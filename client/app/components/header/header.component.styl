@@ -1,0 +1,44 @@
+@import 'nib'
+	
+.likearts-content .header
+	padding 20px 0
+	@extend .flex
+	justify-content space-between
+	@media screen and (max-width $phone)
+		flex-flow row wrap
+		justify-content center
+
+.likearts-content .header__logo
+	width 320px
+	height 116px
+	@extend .cover
+	background-image url('../../../resources/img/logo/logo.png')
+	@media screen and (max-width 992px)
+		width 213.33px
+		height 77.33px
+	@media screen and (max-width $phone)
+		width 160px
+		height 58px
+	
+.likearts-content .header__phone-container
+	text-align right
+	@media screen and (max-width $phone)
+		text-align center
+		width 100%
+	
+.likearts-content .header__text
+	font-size 2.5rem
+	font-weight 300
+	@media screen and (max-width 992px)
+		font-size 2rem
+	@media screen and (max-width $phone)
+		font-size 1.5rem
+	
+.likearts-content .header__phone
+	font-size 3.1rem
+	font-weight 900
+	color $secondary-color
+	@media screen and (max-width 992px)
+		font-size 2.5rem
+	@media screen and (max-width $phone)
+		font-size 2rem
