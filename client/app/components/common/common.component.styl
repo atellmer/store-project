@@ -71,6 +71,14 @@ $container-width = 1300px
 	@media screen and (max-width: $phone)
 		display inherit
 		
+.phone-hide
+	@media screen and (max-width: $phone)
+		display none
+		
+.tablet-hide
+	@media screen and (max-width: $tablet)
+		display none
+		
 .likearts-content
 	font-family 'MyseoSansCyrl'
 	background $bg-color
@@ -80,6 +88,7 @@ $container-width = 1300px
 	font-weight 400
 	image-rendering optimizeQuality
 	text-rendering geometricPrecision
+	overflow-x hidden
 	
 a
 	&:hover

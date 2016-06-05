@@ -12,6 +12,7 @@
 		color #7f4412
 		margin 0
 		line-height 1.2
+		
 		&--h1
 			font-size 4rem
 			font-weight 700
@@ -19,6 +20,7 @@
 				font-size 3rem
 			@media screen and (max-width: 400px)
 				font-size 2rem
+				
 		&--h2
 			font-size 3.2rem
 			font-weight 300
@@ -26,7 +28,20 @@
 				font-size 2.2rem
 			@media screen and (max-width: 400px)
 				font-size 1.8rem
+				
 	&__flex
 		@extend .flex
 		@media screen and (max-width: 992px)
 			flex-flow column-reverse wrap
+			
+			
+.likearts-content .main-container--1 .column
+	@media screen and (max-width: 992px)
+		margin 20px 0
+	&--left
+		@media screen and (max-width: 992px)
+			display none
+					
+	&--right
+		@extend .flex
+		flex-flow column wrap
