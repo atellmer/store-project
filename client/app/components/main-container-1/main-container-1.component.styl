@@ -3,28 +3,30 @@
 .likearts-content .main-container--1
 	min-height 670px
 	background-image url('../../../resources/img/bg/bg--1.png')
-	@media screen and (max-width $phone)
+	@media screen and (max-width: $phone)
 		min-height 0
-	
-.likearts-content .main-container--1 .main-container__title
-	text-align center
-	color #7f4412
-	margin 0
-	line-height 1.2
-	
-.likearts-content .main-container--1 .main-container__title--h1
-	font-size 4rem
-	font-weight 700
-	@media screen and (max-width $phone)
-		font-size 3rem
-	@media screen and (max-width 400px)
-		font-size 2rem
-	
-.likearts-content .main-container--1 .main-container__title--h2
-	font-size 3.2rem
-	font-weight 300
-	@media screen and (max-width $phone)
-		font-size 2.2rem
-	@media screen and (max-width 400px)
-		font-size 1.8rem
-	
+		
+.likearts-content .main-container--1 .content
+	&__title
+		text-align center
+		color #7f4412
+		margin 0
+		line-height 1.2
+		&--h1
+			font-size 4rem
+			font-weight 700
+			@media screen and (max-width: $phone)
+				font-size 3rem
+			@media screen and (max-width: 400px)
+				font-size 2rem
+		&--h2
+			font-size 3.2rem
+			font-weight 300
+			@media screen and (max-width: $phone)
+				font-size 2.2rem
+			@media screen and (max-width: 400px)
+				font-size 1.8rem
+	&__flex
+		@extend .flex
+		@media screen and (max-width: 992px)
+			flex-flow column-reverse wrap

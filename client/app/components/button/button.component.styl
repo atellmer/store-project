@@ -1,0 +1,25 @@
+@import 'nib'
+
+.likearts-content .button
+	display inline-block
+	height auto
+	padding 20px 100px
+	background-color #f84106
+	cursor pointer
+	text-transform uppercase
+	color #fff
+	font-size 3.8rem
+	font-weight 700
+	border-radius 15px
+	border-bottom 8px solid #bd3304
+	@extend .cover, .transition
+	background-image url(../app/components/button/img/btn.png)
+	@media screen and (max-width: 1200px)
+		font-size 3.2rem
+		padding 20px 80px
+	@media screen and (max-width: 992px)
+		font-size 2rem
+		padding 10px 60px
+		border-radius 5px
+		border-bottom 3px solid #bd3304
+		margin 20px 0

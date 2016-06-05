@@ -8,8 +8,8 @@
   "license": "MIT",
   "homepage": "",
   "dependencies": {
-    "bootstrap": "~3.3.6",
-    "angular": "^1.5.5",
-    "AngularHammer": "ryanmullins-angular-hammer#^2.1.10"
+    "bootstrap": "^3.3.6",
+    "angular": "^1.5.6",
+    "angular-hammer": "monospaced/angular-hammer#^1.2.4"
   }
 }

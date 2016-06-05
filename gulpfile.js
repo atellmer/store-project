@@ -84,7 +84,9 @@ gulp.task('component-scripts', function () {
 
 //component-styles
 gulp.task('component-styles', function () {
-	task.componentStyles = gulp.src(path.components() + '**/*.styl')
+	task.componentStyles = gulp.src([
+		path.components() + '**/common.component.styl',
+		path.components() + '**/*.styl'])
 		.pipe(concat('bundle.styl'))
 		.pipe(stylus({
 			use: [nib()],
@@ -169,7 +171,9 @@ gulp.task('html-min', function () {
 //watch
 gulp.task('watch', function () {
 	gulp.watch(path.app() + '**/*.js', ['component-scripts', 'hash-files']);
-	gulp.watch(path.components() + '**/*.styl', ['component-styles', 'hash-files']);
+	gulp.watch([
+		path.components() + '**/common.component.styl',
+		path.components() + '**/*.styl'], ['component-styles', 'hash-files']);
 	gulp.watch(path.root + '**/*.html', ['component-templates']);
 	gulp.watch(path.icons() + 'source/**/*.*', ['sprite']);
 });
