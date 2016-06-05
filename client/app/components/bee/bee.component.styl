@@ -6,7 +6,8 @@ $distance = 30
 	position absolute
 	top 0
 	left 0
-	perspective 600px
+	width 100%
+	perspective 1000px
 
 .likearts-content .bee
 	position absolute
@@ -16,8 +17,8 @@ $distance = 30
 	transform-style preserve-3d
 	background-image: url(../app/components/bee/img/bee.png)
 	&--john
-		top ($distance * 2)px
-		left ($distance * 2)px
+		top ($distance * 1)px
+		left ($distance * 5)px
 		animation motion--john 20s infinite ease-in-out
 
 
@@ -26,18 +27,21 @@ $distance = 30
 		transform translate(10px, 30px) 
 	}
 	20% {
-		transform translate(1000px, 10px)
+		transform translate(15px, 25px)
 	}
-	21%{
-		transform translate(990px, 20px) rotateY(180deg)
+	50% {
+		transform translate(1000px, 50px)
 	}
-	40% {
-		transform translate(800px, 30px) rotateY(180deg)
+	51%{
+		transform translate(990px, 50px) rotateY(180deg)
+	}
+	60% {
+		transform translate(800px, 100px) rotateY(180deg)
 	}
 	80% {
 		transform translate(80px, 30px) rotateY(180deg)
 	}
 	100% {
-		transform translate(20px, 20px)
+		transform translate(10px, 30px)
 	}
 }
