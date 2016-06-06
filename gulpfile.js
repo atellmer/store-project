@@ -66,6 +66,7 @@ gulp.task('component-scripts', function () {
 		path.app() + '**/*.config.js',
 		path.app() + '**/*.service.js',
 		path.app() + '**/*.directive.js',
+		path.app() + '**/*.component.js',
 		path.app() + '**/*.controller.js'
 		])
 		.pipe(concat('bundle.js'));
