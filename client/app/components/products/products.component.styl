@@ -3,7 +3,6 @@
 .likearts-content .products__carousel-item
 	@extend .flex
 	flex-flow row wrap
-	justify-content flex-start
 
 .likearts-content .product-card
 	width calc(50% - 20px)
@@ -12,7 +11,9 @@
 	background-color #fff
 	margin 10px
 	border-radius 2px
-	@extend .paper-shadow-z1
+	@extend .paper-shadow-z2
+	@media screen and (max-width: 480px)
+		width calc(100% - 20px)
 		
 	&__pic
 		margin 0 auto
@@ -42,4 +43,7 @@
 		border-radius 2px
 		@extend .transition
 		&:hover
-			background-color #f84106
+			background-color #2ecc71
+		@media screen and (max-width: $phone)
+			font-size 1rem
+			padding 15px 25px
