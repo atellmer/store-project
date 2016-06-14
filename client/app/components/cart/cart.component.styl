@@ -1,0 +1,46 @@
+@import 'nib'
+
+.likearts-content .cart
+	position fixed
+	top 0
+	right 0
+	width 400px
+	transform translate(400px, 0)
+	height 100vh
+	background-color rgba(239, 108, 0, 0.9);
+	z-index 99
+	color #fff
+	transition transform .2s ease-in-out
+	padding 20px
+	@media screen and (max-width: 1200px)
+		width 300px
+		transform translate(300px, 0)
+	@media screen and (max-width: $phone)
+		width 200px
+		transform translate(200px, 0)
+
+	&__close-btn
+		position absolute
+		top 0
+		right 0
+		padding 16px
+		cursor pointer
+		line-height 1
+		@media screen and (max-width: $phone)
+			padding 8px
+	
+	&__icon
+		font-size 4rem
+		@media screen and (max-width: $phone)
+			font-size 3rem
+
+	&__title
+		text-transform uppercase
+		font-size 1.5rem
+
+.likearts-content .js-cart--active
+	transform translate(0)
+	@extend .paper-shadow-z3
+
+	
+

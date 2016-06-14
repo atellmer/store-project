@@ -10,7 +10,8 @@
 	
 	function lkFunctions() {
 		var service = {
-			makeArrayOf: makeArrayOf
+			makeArrayOf: makeArrayOf,
+			getCurIndexObjectInArray: getCurIndexObjectInArray
 		};
 		
 		return service;
@@ -23,6 +24,15 @@
 				array[length] = value;
 			}
 		  return array;
+		}
+		
+		function getCurIndexObjectInArray(arrayOfObjects, key, value) {
+			for (var i = 0, len = arrayOfObjects.length; i < len; i++) {
+				if (arrayOfObjects[i][key] === value) {
+					return i;
+				}
+			}
+			return -1;
 		}
 	}
 })();

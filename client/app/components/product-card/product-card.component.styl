@@ -1,13 +1,5 @@
 @import 'nib'
 
-.likearts-content .products
-	width calc(100% - 30px)
-	margin 0 auto
-
-.likearts-content .products__carousel-item
-	@extend .flex
-	flex-flow row wrap
-
 .likearts-content .product-card
 	width calc(50% - 20px)
 	height auto
@@ -15,9 +7,9 @@
 	background-color #fff
 	margin 10px
 	border-radius 2px
-	@extend .paper-shadow-z2
-	@media screen and (max-width: 480px)
-		width calc(100% - 20px)
+	@extend .paper-shadow-z1
+	@media screen and (max-width: 400px)
+		width 100%
 		
 	&__pic
 		margin 0 auto
@@ -70,19 +62,6 @@
 		box-shadow inset 1px 1px 1px #BDBDBD
 		cursor pointer
 		margin 5px
-		&--active
-			&::after
-				position absolute
-				top 50%
-				left 50%
-				transform translate(-50%, -50%)
-				content ''
-				width 10px
-				height 10px
-				border-radius 50%
-				background-color #fcaf18
-			border 1px solid #fcaf18
-			box-shadow none
 
 	&__amount
 		@extend .flex
@@ -97,12 +76,19 @@
 		position relative
 		cursor pointer	
 		border-radius 3px
+		@extend .transition
 		&--decrement
 			background-color #FFCDD2
 			color #F44336
+			&:hover
+				background-color #E57373
+				color #D32F2F
 		&--increment
 			background-color #DCEDC8
 			color #8BC34A
+			&:hover
+				background-color #AED581
+				color #689F38
 
 	&__amount-icon
 		position absolute
@@ -116,4 +102,19 @@
 		font-size 2rem
 		margin 10px 0 0 0
 		font-weight 700
+
+.likearts-content  .js-product-card__radio-btn--active
+	border 1px solid #fcaf18
+	box-shadow none
+	&::after
+		position absolute
+		top 50%
+		left 50%
+		transform translate(-50%, -50%)
+		content ''
+		width 10px
+		height 10px
+		border-radius 50%
+		background-color #fcaf18
+			
 

@@ -7,3 +7,17 @@
 	@media screen and (max-width: $phone)
 		min-height 0
 		margin 20px 0
+
+.likearts-content .section--2 .products
+	width 100%
+	margin 0 auto
+	@extend .transition
+
+	&__grid
+		@extend .flex
+		flex-flow row wrap
+
+.likearts-content .section--2 .js-products--active
+	transform translate(-100px, 0);
+	@media screen and (max-width: 992px)
+		transform translate(0, 0);

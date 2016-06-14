@@ -7,13 +7,11 @@
 	<title>Башкирский мёд</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="./bower_components/slick-carousel/slick/slick.css">
-	<link rel="stylesheet" href="./bower_components/slick-carousel/slick/slick-theme.css">
-	<link rel="stylesheet" href="./dist/bundle.css?rev=eda9d28197d635a80a8876b62b09bf07">
+	<link rel="stylesheet" href="./dist/bundle.css?rev=357f0d9265a78d335b2e1e8f42ec8710">
 	<!--?rev=@@hash-->
 </head>
 
-<body class="likearts-content">
+<body data-ng-cloak class="likearts-content">
 	<div class="container-fluid">
 		<div class="section section--1">
 			<div class="container">
@@ -47,139 +45,62 @@
 		</div>
 
 		<div class="section section--2">
-			<div class="container">
-
-				<div class="products">
-					<div class="products__carousel js-products__carousel">
-
-						<div class="products__carousel-item">
-
-							<div class="product-card">
-								<img class="img-responsive product-card__pic" src="./resources/img/content/med-1.png" alt="text">
-								<div class="product-card__info">
-									<h2 class="product-card__info-title">Гречишный мёд</h2>
-									<div class="product-card__controls">
-										<div class="product-card__volume">
-											<div class="product-card__volume-item">
-												<div class="product-card__radio-btn product-card__radio-btn--active"></div>
-												<div class="product-card__label">500 мл</div>
-											</div>
-											<div class="product-card__volume-item">
-												<div class="product-card__radio-btn"></div>
-												<div class="product-card__label">1000 мл</div>
-											</div>
-											<div class="product-card__volume-item">
-												<div class="product-card__radio-btn"></div>
-												<div class="product-card__label">3000 мл</div>
-											</div>
+			<div class="container" data-ng-controller="CartController as cart">
+				<div class="products js-products" data-ng-controller="ProductCardController as productCard">
+					<div class="products__grid">
+						<div data-card-id="{{::product.id}}" data-ng-repeat="product in productCard.products track by product.id" class="product-card">
+							<img class="img-responsive product-card__pic" data-ng-src="{{::product.image}}" alt="text">
+							<div class="product-card__info">
+								<h2 class="product-card__info-title">{{::product.title}}</h2>
+								<div class="product-card__controls">
+									<div class="product-card__volume">
+										<div class="product-card__volume-item">
+											<div data-hm-tap="productCard.setVolume($event)" data-radio-value="500" class="product-card__radio-btn js-product-card__radio-btn js-product-card__radio-btn--active"></div>
+											<div class="product-card__label">500 мл</div>
 										</div>
-										<div class="product-card__amount">
-											<div class="product-card__amount-btn product-card__amount-btn--decrement">
-												<i class="material-icons product-card__amount-icon">remove</i>
-											</div>
-											<div class="product-card__amount-count">1</div>
-											<div class="product-card__amount-btn product-card__amount-btn--increment">
-												<i class="material-icons product-card__amount-icon">add</i>
-											</div>
+										<div class="product-card__volume-item">
+											<div data-hm-tap="productCard.setVolume($event)" data-radio-value="1000" class="product-card__radio-btn js-product-card__radio-btn"></div>
+											<div class="product-card__label">1000 мл</div>
 										</div>
-
-										<div class="product-card__price">
-											500 руб.
+										<div class="product-card__volume-item">
+											<div data-hm-tap="productCard.setVolume($event)" data-radio-value="3000" class="product-card__radio-btn js-product-card__radio-btn"></div>
+											<div class="product-card__label">3000 мл</div>
 										</div>
 									</div>
-									<div class="product-card__button">В корзину</div>
-								</div>
-							</div>	
-
-							<div class="product-card">
-								<img class="img-responsive product-card__pic" src="./resources/img/content/med-1.png" alt="text">
-								<div class="product-card__info">
-									<h2 class="product-card__info-title">Гречишный мёд</h2>
-									<div class="product-card__controls">
-										<div class="product-card__volume">
-											<div class="product-card__volume-item">
-												<div class="product-card__radio-btn product-card__radio-btn--active"></div>
-												<div class="product-card__label">500 мл</div>
-											</div>
-											<div class="product-card__volume-item">
-												<div class="product-card__radio-btn"></div>
-												<div class="product-card__label">1000 мл</div>
-											</div>
-											<div class="product-card__volume-item">
-												<div class="product-card__radio-btn"></div>
-												<div class="product-card__label">3000 мл</div>
-											</div>
+									<div class="product-card__amount">
+										<div data-hm-tap="productCard.setAmount($event, -1)" class="product-card__amount-btn product-card__amount-btn--decrement">
+											<i class="material-icons product-card__amount-icon">remove</i>
 										</div>
-										<div class="product-card__amount">
-											<div class="product-card__amount-btn product-card__amount-btn--decrement">
-												<i class="material-icons product-card__amount-icon">remove</i>
-											</div>
-											<div class="product-card__amount-count">1</div>
-											<div class="product-card__amount-btn product-card__amount-btn--increment">
-												<i class="material-icons product-card__amount-icon">add</i>
-											</div>
-										</div>
-
-										<div class="product-card__price">
-											500 руб.
+										<div class="product-card__amount-count js-product-card__amount-count">1</div>
+										<div data-hm-tap="productCard.setAmount($event, 1)" class="product-card__amount-btn product-card__amount-btn--increment">
+											<i class="material-icons product-card__amount-icon">add</i>
 										</div>
 									</div>
-									<div class="product-card__button">В корзину</div>
-								</div>
-							</div>	
 
-							<div class="product-card">
-								<img class="img-responsive product-card__pic" src="./resources/img/content/med-1.png" alt="text">
-								<div class="product-card__info">
-									<h2 class="product-card__info-title">Гречишный мёд</h2>
-									<div class="product-card__controls">
-										<div class="product-card__volume">
-											<div class="product-card__volume-item">
-												<div class="product-card__radio-btn product-card__radio-btn--active"></div>
-												<div class="product-card__label">500 мл</div>
-											</div>
-											<div class="product-card__volume-item">
-												<div class="product-card__radio-btn"></div>
-												<div class="product-card__label">1000 мл</div>
-											</div>
-											<div class="product-card__volume-item">
-												<div class="product-card__radio-btn"></div>
-												<div class="product-card__label">3000 мл</div>
-											</div>
-										</div>
-										<div class="product-card__amount">
-											<div class="product-card__amount-btn product-card__amount-btn--decrement">
-												<i class="material-icons product-card__amount-icon">remove</i>
-											</div>
-											<div class="product-card__amount-count">1</div>
-											<div class="product-card__amount-btn product-card__amount-btn--increment">
-												<i class="material-icons product-card__amount-icon">add</i>
-											</div>
-										</div>
-
-										<div class="product-card__price">
-											500 руб.
-										</div>
+									<div class="product-card__price">
+										{{::product.price}} руб.
 									</div>
-									<div class="product-card__button">В корзину</div>
 								</div>
-							</div>	
-
+								<div data-hm-tap="productCard.addToCard($event); cart.openCart();" class="product-card__button">В корзину</div>
+							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
 
-		</div>
+			<div class="cart js-cart" data-ng-controller="CartController as cart">
+				<div data-hm-tap="cart.closeCart()" class="cart__close-btn">
+					<i class="material-icons cart__icon">close</i>
+				</div>
+				<div class="cart__title">Ваш заказ</div>
+			</div>
 
-	</div>
-	<script src="./bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="./bower_components/angular/angular.min.js"></script>
-	<script src="./bower_components/hammerjs/hammer.min.js"></script>
-	<script src="./bower_components/angular-hammer/angular-hammer.js"></script>
-	<script src="./bower_components/slick-carousel/slick/slick.min.js"></script>
-	<script src="./dist/bundle.js?rev=79abdea51810c4daf12ebfd72e05071e"></script>
+		</div>
+		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="./bower_components/angular/angular.min.js"></script>
+		<script src="./bower_components/hammerjs/hammer.min.js"></script>
+		<script src="./bower_components/angular-hammer/angular-hammer.js"></script>
+		<script src="./dist/bundle.js?rev=534740cd10ee7b47afd26f8142c34ff4"></script>
 </body>
 
 </html>
