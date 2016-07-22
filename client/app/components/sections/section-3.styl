@@ -1,0 +1,55 @@
+@import 'nib'
+
+.likearts-content 
+
+	.section--3
+		height auto
+		background-color #65707d
+		background-image url('../../../resources/img/bg/bg--2.png')
+		padding 65px 0
+		@media screen and (max-width: $phone)
+			min-height 0
+
+		.content
+			position relative
+			width 100%
+			height auto
+
+			&__title
+				text-align center
+				color #7f4412
+				margin 0
+				line-height 1.2
+				color #fff
+				margin 20px 0
+					
+				&--h2
+					font-size 3.2rem
+					font-weight 700
+					text-shadow 3px 2px 5px #333
+					text-transform uppercase
+					@media screen and (max-width: $phone)
+						font-size 2.2rem
+					@media screen and (max-width: 400px)
+						font-size 1.8rem
+
+
+			&__video
+				height auto
+				min-height 520px
+				display flex
+				flex-flow column wrap
+				justify-content center
+				align-items center
+				@media screen and (max-width: 600px)
+					min-height 0
+
+			.iframe
+				width 100%
+				max-width 650px
+				height 365px
+				@media screen and (max-width: 600px)
+					height 200px
+			
+
+

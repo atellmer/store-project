@@ -6,12 +6,12 @@
 		.module('app')
 		.controller('ProductCardController', ProductCardController);
 
-	ProductCardController.$inject = ['ProductCardDataService', 'CartService'];
+	ProductCardController.$inject = ['DataService', 'CartService'];
 
-	function ProductCardController(ProductCardDataService, CartService) {
+	function ProductCardController(DataService, CartService) {
 		var vm = this;
 
-		vm.products = ProductCardDataService.products;
+		vm.products = DataService.products;
 		vm.setVolume = setVolume;
 		vm.setAmount = setAmount;
 		vm.addToCard = addToCard;
@@ -48,9 +48,11 @@
 
 		function setAmount(event, count) {
 			var target = angular.element(event.target);
-			var parent = target.closest('[data-card-id]');
+			//var parent = target.closest('[data-card-id]');
+			var parent = target.closest('[data-slick-index]');
 			var id = target.closest('[data-card-id]').attr('data-card-id');
-			var countEl = angular.element(document.querySelector('[data-card-id="' + id +'"] .js-product-card__amount-count'));
+			//var countEl = angular.element(document.querySelector('[data-card-id="' + id +'"] .js-product-card__amount-count'));
+			var countEl = angular.element(document.querySelector('[data-slick-index="' + id +'"] .js-product-card__amount-count'));
 			var counter = parseInt(countEl.text());
 			var amount = 0;
 

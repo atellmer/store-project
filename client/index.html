@@ -7,7 +7,11 @@
 	<title>Башкирский мёд</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="./dist/bundle.css?rev=357f0d9265a78d335b2e1e8f42ec8710">
+	<link rel="stylesheet" href="./bower_components/slick-carousel/slick/slick.css">
+	<link rel="stylesheet" href="./bower_components/slick-carousel/slick/slick-theme.css">
+	<link rel="stylesheet" href="./bower_components/ng-dialog/css/ngDialog.min.css">
+	<link rel="stylesheet" href="./bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
+	<link rel="stylesheet" href="./dist/bundle.css?rev=d66310575516b692115c6ef14a07e421">
 	<!--?rev=@@hash-->
 </head>
 
@@ -47,7 +51,7 @@
 		<div class="section section--2">
 			<div class="container" data-ng-controller="CartController as cart">
 				<div class="products js-products" data-ng-controller="ProductCardController as productCard">
-					<div class="products__grid">
+					<div id="carousel">
 						<div data-card-id="{{::product.id}}" data-ng-repeat="product in productCard.products track by product.id" class="product-card">
 							<img class="img-responsive product-card__pic" data-ng-src="{{::product.image}}" alt="text">
 							<div class="product-card__info">
@@ -87,20 +91,76 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="cart js-cart" data-ng-controller="CartController as cart">
-				<div data-hm-tap="cart.closeCart()" class="cart__close-btn">
-					<i class="material-icons cart__icon">close</i>
-				</div>
-				<div class="cart__title">Ваш заказ</div>
-			</div>
-
 		</div>
+
+		<div class="section section--3">
+			<div class="container">
+				<div class="content">
+					<h2 class="content__title content__title--h2">Где рождается наш мёд</h2>
+					<div class="content__video">
+						<iframe class="iframe" src="https://www.youtube.com/embed/jBQr05bXxaU" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="section section--4">
+			<div class="container">
+				<div class="content">
+					<div data-testimonials-carousel class="feedback" data-ng-controller="FeedbackController as feed">
+						<div class="feedback__item" data-ng-repeat="item in feed.feedback">
+							<div class="feedback__item-header">
+								{{ ::item.name }}
+							</div>
+							<div class="feedback__item-body">
+								<p>{{ ::item.feed }}</p>
+							</div>
+						</div>
+						
+					</div>
+					<div class="btn-container">
+						<div class="feed-btn">Написать отзыв</div>
+					</div>
+					<div class="certificate" data-ng-controller="CertificateController as cert">
+						<div class="certificate__item" data-hm-tap="cert.clickToOpen('certificate-1')">
+							<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
+							<script type="text/ng-template" id="certificate-1">
+								<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
+							</script>
+						</div>
+						<div class="certificate__item" data-hm-tap="cert.clickToOpen('certificate-2')">
+							<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
+							<script type="text/ng-template" id="certificate-2">
+								<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
+							</script>
+						</div>
+						<div class="certificate__item" data-hm-tap="cert.clickToOpen('certificate-3')">
+							<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
+							<script type="text/ng-template" id="certificate-3">
+								<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="cart js-cart" data-ng-controller="CartController as cart">
+			<div data-hm-tap="cart.closeCart()" class="cart__close-btn">
+				<i class="material-icons cart__icon">close</i>
+			</div>
+			<div class="cart__title">Ваш заказ</div>
+		</div>
+
+
 		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="./bower_components/angular/angular.min.js"></script>
 		<script src="./bower_components/hammerjs/hammer.min.js"></script>
 		<script src="./bower_components/angular-hammer/angular-hammer.js"></script>
-		<script src="./dist/bundle.js?rev=534740cd10ee7b47afd26f8142c34ff4"></script>
+		<script src="./bower_components/slick-carousel/slick/slick.min.js"></script>
+		<script src="./bower_components/ng-dialog/js/ngDialog.min.js"></script>
+		<script src="./dist/bundle.js?rev=b47575c84acf757a66b4f41f272df6df"></script>
 </body>
 
 </html>

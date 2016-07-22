@@ -3,6 +3,7 @@
 	'use strict';
 
 	angular.module('app', [
-		'hmTouchEvents'
+		'hmTouchEvents',
+		'ngDialog',
 	]);
 })();

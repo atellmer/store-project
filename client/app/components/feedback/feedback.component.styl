@@ -1,0 +1,49 @@
+@import 'nib'
+
+.likearts-content 
+
+	.feedback
+		position relative
+		width 60%
+		margin 0 auto
+		@media screen and (max-width: 768px)
+			width 100%
+
+		&__item
+			margin 0 20px
+
+		&__item-header
+			font-weight 500
+			font-size 2.3rem
+			@media screen and (max-width: 768px)
+				font-size 1.8rem
+
+		&__item-body
+			position relative
+			height auto
+			min-height 125px
+			border 1px solid #ffc62a
+			border-radius 0 3px 3px 3px
+			margin 20px 0 0 0
+			background-color #fff
+			padding 30px
+
+			&:before
+				content ''
+				position absolute
+				top -11px
+				left 20px
+				width 20px
+				height 20px
+				border 1px solid #ffc62a
+				background-color #fff
+				border-bottom 0
+				border-right 0
+				transform rotate(45deg)
+
+			p 
+				margin 0
+				font-weight 300
+				font-size 1.8rem
+				@media screen and (max-width: 768px)
+					font-size 1.4rem
