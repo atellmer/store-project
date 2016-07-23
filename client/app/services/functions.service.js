@@ -23,7 +23,7 @@
 			while (length--) {
 				array[length] = value;
 			}
-		  return array;
+			return array;
 		}
 		
 		function getCurIndexObjectInArray(arrayOfObjects, key, value) {

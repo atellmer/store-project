@@ -1,0 +1,31 @@
+<div class="cart js-cart">
+	<div data-hm-tap="$ctrl.closeCart()" class="cart__close-btn">
+		<i class="material-icons cart__icon">close</i>
+	</div>
+	<div class="cart__title">Ваш заказ:</div>
+	<ul ng-scrollbars data-ng-if="$ctrl.cart.length > 0" class="cart__list">
+		<li data-ng-repeat="item in $ctrl.cart" class="cart__item">
+			<span>{{ ::item.name }} ({{ ::item.amount }} шт. по {{ ::item.volume }} мл.)</span>
+			<span data-ng-click="$ctrl.deleteFromCart(item.id)" class="cart__delete-btn">
+				<i class="material-icons cart__delete-icon">delete</i>
+			</span>
+		</li>
+	</ul>
+	<ul data-ng-if="$ctrl.cart.length === 0" class="cart__list">
+		<li class="cart__item">
+			Товары пока не добавлены...
+		</li>
+	</ul>
+	<div class="btn-container">
+		<div class="cart__order-btn">
+			<span>Оформить заказ</span>
+		</div>
+	</div>
+	
+</div>
+
+<div class="cart-btn" data-ng-click="$ctrl.openCart()">
+	<i data-ng-if="$ctrl.cart.length === 0" class="material-icons cart-btn__icon">add_shopping_cart</i>
+	<i data-ng-if="$ctrl.cart.length > 0" class="material-icons cart-btn__icon">shopping_cart</i>
+	<span class="cart-btn__count">{{ $ctrl.cart.length }}</span>
+</div>

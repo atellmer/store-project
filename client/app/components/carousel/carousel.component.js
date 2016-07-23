@@ -5,7 +5,7 @@
 	window.onload = function () {
 
 		$('#carousel').slick({
-			infinite: true,
+			infinite: false,
 			speed: 800,
 			slidesToShow: 4,
 			slidesToScroll: 1,

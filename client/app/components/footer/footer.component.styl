@@ -1,2 +1,28 @@
 @import 'nib'
 
+.likearts-content 
+
+	.section--6
+
+		.footer
+			width 100%
+			min-height 150px
+			padding 8px
+			@extend .flex
+			background linear-gradient(270deg, #ffc62a, #f39c12)
+			background-size 400% 400%
+			animation background-footer 30s ease infinite
+
+
+@keyframes background-footer { 
+    0%{
+		background-position 0% 50%
+	}
+    50%{
+		background-position 100% 50%
+	}
+    100%{ 
+		background-position 0% 50%
+	}
+}
+

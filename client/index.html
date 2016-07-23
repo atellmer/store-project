@@ -11,12 +11,24 @@
 	<link rel="stylesheet" href="./bower_components/slick-carousel/slick/slick-theme.css">
 	<link rel="stylesheet" href="./bower_components/ng-dialog/css/ngDialog.min.css">
 	<link rel="stylesheet" href="./bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
-	<link rel="stylesheet" href="./dist/bundle.css?rev=d66310575516b692115c6ef14a07e421">
+	<link rel="stylesheet" href="./bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="./dist/bundle.css?rev=8c27f947598ade83a928d73e4c1e1008">
 	<!--?rev=@@hash-->
+	<style>
+		[ng\:cloak], 
+		[ng-cloak], 
+		[data-ng-cloak], 
+		[x-ng-cloak], 
+		.ng-cloak, 
+		.x-ng-cloak {
+			display: none!important;
+		}
+	</style>
 </head>
 
-<body data-ng-cloak class="likearts-content">
+<body data-ng-cloak class="likearts-content" data-ng-controller="SharedController as shared">
 	<div class="container-fluid">
+
 		<div class="section section--1">
 			<div class="container">
 				<header class="header">
@@ -49,45 +61,10 @@
 		</div>
 
 		<div class="section section--2">
-			<div class="container" data-ng-controller="CartController as cart">
-				<div class="products js-products" data-ng-controller="ProductCardController as productCard">
+			<div class="container">
+				<div class="products js-products">
 					<div id="carousel">
-						<div data-card-id="{{::product.id}}" data-ng-repeat="product in productCard.products track by product.id" class="product-card">
-							<img class="img-responsive product-card__pic" data-ng-src="{{::product.image}}" alt="text">
-							<div class="product-card__info">
-								<h2 class="product-card__info-title">{{::product.title}}</h2>
-								<div class="product-card__controls">
-									<div class="product-card__volume">
-										<div class="product-card__volume-item">
-											<div data-hm-tap="productCard.setVolume($event)" data-radio-value="500" class="product-card__radio-btn js-product-card__radio-btn js-product-card__radio-btn--active"></div>
-											<div class="product-card__label">500 мл</div>
-										</div>
-										<div class="product-card__volume-item">
-											<div data-hm-tap="productCard.setVolume($event)" data-radio-value="1000" class="product-card__radio-btn js-product-card__radio-btn"></div>
-											<div class="product-card__label">1000 мл</div>
-										</div>
-										<div class="product-card__volume-item">
-											<div data-hm-tap="productCard.setVolume($event)" data-radio-value="3000" class="product-card__radio-btn js-product-card__radio-btn"></div>
-											<div class="product-card__label">3000 мл</div>
-										</div>
-									</div>
-									<div class="product-card__amount">
-										<div data-hm-tap="productCard.setAmount($event, -1)" class="product-card__amount-btn product-card__amount-btn--decrement">
-											<i class="material-icons product-card__amount-icon">remove</i>
-										</div>
-										<div class="product-card__amount-count js-product-card__amount-count">1</div>
-										<div data-hm-tap="productCard.setAmount($event, 1)" class="product-card__amount-btn product-card__amount-btn--increment">
-											<i class="material-icons product-card__amount-icon">add</i>
-										</div>
-									</div>
-
-									<div class="product-card__price">
-										{{::product.price}} руб.
-									</div>
-								</div>
-								<div data-hm-tap="productCard.addToCard($event); cart.openCart();" class="product-card__button">В корзину</div>
-							</div>
-						</div>
+						<bash-product-card product="product" data-ng-repeat="product in shared.products track by product.id"></bash-product-card>
 					</div>
 				</div>
 			</div>
@@ -107,52 +84,26 @@
 		<div class="section section--4">
 			<div class="container">
 				<div class="content">
-					<div data-testimonials-carousel class="feedback" data-ng-controller="FeedbackController as feed">
-						<div class="feedback__item" data-ng-repeat="item in feed.feedback">
-							<div class="feedback__item-header">
-								{{ ::item.name }}
-							</div>
-							<div class="feedback__item-body">
-								<p>{{ ::item.feed }}</p>
-							</div>
-						</div>
-						
-					</div>
+					<bash-feedback></bash-feedback>
 					<div class="btn-container">
 						<div class="feed-btn">Написать отзыв</div>
 					</div>
-					<div class="certificate" data-ng-controller="CertificateController as cert">
-						<div class="certificate__item" data-hm-tap="cert.clickToOpen('certificate-1')">
-							<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
-							<script type="text/ng-template" id="certificate-1">
-								<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
-							</script>
-						</div>
-						<div class="certificate__item" data-hm-tap="cert.clickToOpen('certificate-2')">
-							<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
-							<script type="text/ng-template" id="certificate-2">
-								<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
-							</script>
-						</div>
-						<div class="certificate__item" data-hm-tap="cert.clickToOpen('certificate-3')">
-							<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
-							<script type="text/ng-template" id="certificate-3">
-								<img class="img-responsive" src="./resources/img/content/cert-1.jpg" alt="cert">
-							</script>
-						</div>
-					</div>
+					<bash-certificate></bash-certificate>
 				</div>
 			</div>
 		</div>
 
-
-		<div class="cart js-cart" data-ng-controller="CartController as cart">
-			<div data-hm-tap="cart.closeCart()" class="cart__close-btn">
-				<i class="material-icons cart__icon">close</i>
-			</div>
-			<div class="cart__title">Ваш заказ</div>
+		<div class="section section--5">
+			<bash-map></bash-map>
 		</div>
 
+		<div class="section section--6">
+			<footer class="footer">
+				<div class="footer__copy">Башкирский Мёд &copy {{ ::shared.year}}</div>
+			</footer>
+		</div>
+
+		<bash-cart></bash-cart>
 
 		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="./bower_components/angular/angular.min.js"></script>
@@ -160,7 +111,9 @@
 		<script src="./bower_components/angular-hammer/angular-hammer.js"></script>
 		<script src="./bower_components/slick-carousel/slick/slick.min.js"></script>
 		<script src="./bower_components/ng-dialog/js/ngDialog.min.js"></script>
-		<script src="./dist/bundle.js?rev=b47575c84acf757a66b4f41f272df6df"></script>
+		<script src="./bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="./bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
+		<script src="./dist/bundle.js?rev=9b2053a2d1eb62dee1def682851a755a"></script>
 </body>
 
 </html>

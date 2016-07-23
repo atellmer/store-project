@@ -5,5 +5,6 @@
 	angular.module('app', [
 		'hmTouchEvents',
 		'ngDialog',
+		'ngScrollbars',
 	]);
 })();

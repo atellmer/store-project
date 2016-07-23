@@ -5,8 +5,6 @@ var rename = require('gulp-rename');
 var connect = require('gulp-connect');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var htmlprettify = require('gulp-html-prettify');
-var htmlmin = require('gulp-html-minifier');
 var spritesmith = require('gulp.spritesmith');
 var rev = require('gulp-rev-append');
 var tinypng = require('gulp-tinypng');
@@ -68,25 +66,25 @@ gulp.task('component-scripts', function () {
 		path.app() + '**/*.directive.js',
 		path.app() + '**/*.component.js',
 		path.app() + '**/*.controller.js'
-		])
+	])
 		.pipe(concat('bundle.js'));
-				
+
 	if (!config.debug) {
 		task.componentScripts
 			.pipe(uglify());
 	}
-	
+
 	task.componentScripts = task.componentScripts
 		.pipe(gulp.dest(path.dist()))
 		.pipe(connect.reload());
-				
+
 	return task.componentScripts;
 });
 
 //component-styles
 gulp.task('component-styles', function () {
 	task.componentStyles = gulp.src([
-		path.components() + '**/common.component.styl',
+		path.components() + '**/shared.styl',
 		path.components() + '**/*.styl'])
 		.pipe(concat('bundle.styl'))
 		.pipe(stylus({
@@ -95,41 +93,28 @@ gulp.task('component-styles', function () {
 		}))
 		.pipe(gulp.dest(path.dist()))
 		.pipe(connect.reload());
-			
+
 	return task.componentStyles;
 });
 
 //component-templates
 gulp.task('component-templates', function () {
 	task.componentTemplates = gulp.src(path.root + '**/*.html')
-	
-	if(config.debug) {
-		if(prettify) {
-			task.componentTemplates = task.componentTemplates
-				.pipe(htmlprettify({ indent_char: '	', indent_size: 1 }))
-				.pipe(gulp.dest(function (file) {
-					return file.base;
-				}));
-			prettify = !prettify;
-		}
-	}
-
-	task.componentTemplates = task.componentTemplates
 		.pipe(connect.reload());
-		
+
 	return task.componentTemplates;
 });
 
 //sprite
 gulp.task('sprite', function () {
-   task.sprite = gulp.src(path.icons() + 'source/**/*.{jpg,jpeg,png,gif}')
+	task.sprite = gulp.src(path.icons() + 'source/**/*.{jpg,jpeg,png,gif}')
 		.pipe(spritesmith({
 			imgName: 'sprite.png',
 			cssName: 'sprite.css'
 		}))
 		.pipe(gulp.dest(path.icons() + 'sprite/'));
-		
-  return task.sprite;
+
+	return task.sprite;
 });
 
 //hash-files
@@ -140,7 +125,7 @@ gulp.task('hash-files', function () {
 			return file.base;
 		}))
 		.pipe(connect.reload());
-		
+
 	return task.hashFiles;
 });
 
@@ -152,21 +137,8 @@ gulp.task('image-min', function () {
 			return file.base;
 		}))
 		.pipe(connect.reload());
-		
-	return task.imageMin;
-});
 
-//html-min
-gulp.task('html-min', function () {
-	task.componentTemplates = gulp.src(path.root + '**/*.html');
-	
-	task.componentTemplates = task.componentTemplates
-	.pipe(htmlmin({collapseWhitespace: true}))
-	.pipe(gulp.dest(function (file) {
-		return file.base;
-	}));
-	
-	return task.componentTemplates;
+	return task.imageMin;
 });
 
 //watch
@@ -180,11 +152,11 @@ gulp.task('watch', function () {
 });
 
 gulp.task('default', [
-	'connect', 
-	'component-scripts', 
-	'component-styles', 
-	'component-templates', 
-	'sprite', 
+	'connect',
+	'component-scripts',
+	'component-styles',
+	'component-templates',
+	'sprite',
 	'hash-files',
 	'watch'
 ]);

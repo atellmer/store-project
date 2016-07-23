@@ -1,27 +1,35 @@
 ;
 (function() {
-'use strict';
+	'use strict';
 
-	angular
-		.module('app')
-		.controller('CartController', CartController);
+	angular.module('app')
+		.component('bashCart', {
+			templateUrl: './app/components/cart/cart.component.html',
+			controller: ['$scope', 'CartService', controller],
+		});
 
-	CartController.$inject = [];
-
-	function CartController() {
+	function controller($scope, CartService) {
 		var vm = this;
 
 		var cartEl = angular.element(document.querySelector('.js-cart'));
 		var productsEl = angular.element(document.querySelector('.js-products'));
 
-		vm.openCart = openCart;
+		vm.cart = CartService.cart;
+
 		vm.closeCart = closeCart;
+		vm.openCart = openCart;
+		vm.deleteFromCart = CartService.deleteFromCart;
 		
 		activate();
 
 		////////////////
 
-		function activate() { }
+		function activate() {
+			$scope.$on('cart:change', function(event, data) {
+				vm.cart = CartService.cart;
+				openCart();
+			});
+		}
 
 		function openCart() {
 			if (!cartEl.hasClass('js-cart--active')) {

@@ -1,7 +1,6 @@
 @import 'nib'
 
 .likearts-content .product-card
-	width 200px
 	height auto
 	background-color #fff
 	margin 10px
@@ -26,7 +25,9 @@
 	&__button
 		width 100%
 		padding 20px 30px
-		background-color #23b03d
+		background linear-gradient(270deg, #EF5350, #9575CD)
+		background-size 400% 400%
+		animation background-button 10s ease infinite
 		text-align center
 		color #fff
 		text-transform uppercase
@@ -113,5 +114,16 @@
 		height 10px
 		border-radius 50%
 		background-color #fcaf18
-			
+
+@keyframes background-button { 
+    0%{
+		background-position 0% 50%
+	}
+    50%{
+		background-position 100% 50%
+	}
+    100%{ 
+		background-position 0% 50%
+	}
+}
 

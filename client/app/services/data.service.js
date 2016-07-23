@@ -12,37 +12,37 @@
 		var products = [
 			{
 				id: 0,
-				title: 'Гречишный мёд',
+				name: 'Гречишный мёд',
 				image: './resources/img/content/med-1.png',
 				price: 500
 			},
 			{
 				id: 1,
-				title: 'Липовый мёд',
+				name: 'Липовый мёд',
 				image: './resources/img/content/med-2.png',
 				price: 500
 			},
 			{
 				id: 2,
-				title: 'Цветочный мёд',
+				name: 'Цветочный мёд',
 				image: './resources/img/content/med-3.png',
 				price: 500
 			},
 			{
 				id: 3,
-				title: 'Цветочный мёд',
+				name: 'Цветочный мёд',
 				image: './resources/img/content/med-1.png',
 				price: 500
 			},
 			{
 				id: 4,
-				title: 'Липовый мёд',
+				name: 'Липовый мёд',
 				image: './resources/img/content/med-2.png',
 				price: 500
 			},
 			{
 				id: 5,
-				title: 'Прикольный мёд',
+				name: 'Прикольный мёд',
 				image: './resources/img/content/med-3.png',
 				price: 500
 			}
