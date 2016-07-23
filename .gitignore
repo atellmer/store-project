@@ -8,3 +8,5 @@ static
 
 .module-cache
 *.log
+
+.gulp

@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="./bower_components/ng-dialog/css/ngDialog.min.css">
 	<link rel="stylesheet" href="./bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
 	<link rel="stylesheet" href="./bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" href="./dist/bundle.css?rev=8c27f947598ade83a928d73e4c1e1008">
+	<link rel="stylesheet" href="./dist/bundle.css?rev=107f2cfef0594852036ac581d1c65265">
 	<!--?rev=@@hash-->
 	<style>
 		[ng\:cloak], 
@@ -47,7 +47,7 @@
 						</div>
 						<div class="column column--right">
 							<img src="./resources/img/content/2.png" class="img-responsive content__pic content__pic--small" alt="">
-							<div class="button">Заказать</div>
+							<div data-ng-click="shared.scrollTo('[data-scroll-to]')" class="button">Заказать</div>
 							<div class="content__label">При заказе через сайт, книга в подарок</div>
 						</div>
 
@@ -60,7 +60,7 @@
 			<div class="waves"></div>
 		</div>
 
-		<div class="section section--2">
+		<div data-scroll-to class="section section--2">
 			<div class="container">
 				<div class="products js-products">
 					<div id="carousel">
@@ -113,7 +113,8 @@
 		<script src="./bower_components/ng-dialog/js/ngDialog.min.js"></script>
 		<script src="./bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 		<script src="./bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
-		<script src="./dist/bundle.js?rev=9b2053a2d1eb62dee1def682851a755a"></script>
+		<script src="./bower_components/angular-scroll/angular-scroll.min.js"></script>
+		<script src="./dist/bundle.js?rev=eb16dbb02538742c93bb6bd7b559834d"></script>
 </body>
 
 </html>

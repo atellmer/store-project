@@ -14,7 +14,8 @@
     "jquery": "^2.2.4",
     "slick-carousel": "^1.6.0",
     "ng-dialog": "^0.6.2",
-    "ng-scrollbars": "^0.0.10"
+    "ng-scrollbars": "^0.0.10",
+    "angular-scroll": "^1.0.0"
   },
   "resolutions": {
     "angular": ">=1.0.6"

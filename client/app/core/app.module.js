@@ -6,5 +6,6 @@
 		'hmTouchEvents',
 		'ngDialog',
 		'ngScrollbars',
+		'duScroll',
 	]);
 })();
