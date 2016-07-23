@@ -9,7 +9,7 @@
 	</div>
 </div>
 <div class="btn-container">
-	<div data-ng-click="$ctrl.showModal('feedback-modal')" class="feedback__btn">Написать отзыв</div>
+	<div data-hm-tap="$ctrl.showModal('feedback-modal')" class="feedback__btn">Написать отзыв</div>
 </div>
 
 <script type="text/ng-template" id="feedback-modal">
@@ -25,6 +25,6 @@
 				<textarea data-input-feedback type="text" name="feedback" placeholder="Оставьте отзыв..." class="form-control textarea"></textarea>
 			</div>
 		</div>
-		<div data-ng-click="$ctrl.send($event)" class="bash-modal__btn">Отправить</div>
+		<div data-hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div>
 	</div>
 </script>

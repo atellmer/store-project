@@ -6,7 +6,7 @@
 	<ul ng-scrollbars data-ng-if="$ctrl.cart.length > 0" class="cart__list">
 		<li data-ng-repeat="item in $ctrl.cart" class="cart__item">
 			<span>{{ ::$index + 1 }}. {{ ::item.name }} ({{ ::item.amount }} шт. по {{ ::item.volume }} мл.)</span>
-			<span data-ng-click="$ctrl.deleteFromCart(item.id)" class="cart__delete-btn">
+			<span data-hm-tap="$ctrl.deleteFromCart(item.id)" class="cart__delete-btn">
 				<i class="material-icons cart__delete-icon">delete</i>
 			</span>
 		</li>
@@ -17,7 +17,7 @@
 		</li>
 	</ul>
 	<div data-ng-if="$ctrl.cart.length > 0" class="btn-container">
-		<div data-ng-click="$ctrl.showModal('order-modal')" class="cart__order-btn">
+		<div data-hm-tap="$ctrl.showModal('order-modal')" class="cart__order-btn">
 			<span>Оформить заказ</span>
 		</div>
 	</div>
@@ -28,7 +28,7 @@
 	
 </div>
 
-<div class="cart-btn" data-ng-click="$ctrl.openCart()">
+<div class="cart-btn" data-hm-tap="$ctrl.openCart()">
 	<i data-ng-if="$ctrl.cart.length === 0" class="material-icons cart-btn__icon">add_shopping_cart</i>
 	<i data-ng-if="$ctrl.cart.length > 0" class="material-icons cart-btn__icon">shopping_cart</i>
 	<span class="cart-btn__count">{{ $ctrl.cart.length }}</span>
@@ -55,6 +55,6 @@
 				<textarea data-input-adress type="text" name="adress" placeholder="город, улица, дом, квартира..." class="form-control textarea"></textarea>
 			</div>
 		</div>
-		<div data-ng-click="$ctrl.send($event)" class="bash-modal__btn">Отправить</div>
+		<div data-hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div>
 	</div>
 </script>

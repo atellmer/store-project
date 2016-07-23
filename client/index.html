@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="./bower_components/ng-dialog/css/ngDialog.min.css">
 	<link rel="stylesheet" href="./bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
 	<link rel="stylesheet" href="./bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" href="./dist/bundle.css?rev=775f3c00347e4f3fc9a1d6a3b79e9d37">
+	<link rel="stylesheet" href="./dist/bundle.css?rev=9d9f4b0c162f5685ba01ebb454daaba1">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<!--?rev=@@hash-->
 	<style>
@@ -48,7 +48,7 @@
 						</div>
 						<div class="column column--right">
 							<img src="./resources/img/content/2.png" class="img-responsive content__pic content__pic--small" alt="">
-							<div data-ng-click="shared.scrollTo('[data-scroll-to]')" class="button">Заказать</div>
+							<div data-hm-tap="shared.scrollTo('[data-scroll-to]')" class="button">Заказать</div>
 							<div class="content__label">При заказе через сайт, книга в подарок</div>
 						</div>
 
@@ -64,7 +64,7 @@
 		<div data-scroll-to class="section section--2">
 			<div class="container">
 				<div class="products js-products">
-					<div id="carousel">
+					<div data-catalog-carousel>
 						<bash-product-card product="product" data-ng-repeat="product in shared.products track by product.id"></bash-product-card>
 					</div>
 				</div>
@@ -112,7 +112,7 @@
 		<script src="./bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
 		<script src="./bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
 		<script src="./bower_components/angular-scroll/angular-scroll.min.js"></script>
-		<script src="./dist/bundle.js?rev=7db5365bc9c9cca246769940ba850f22"></script>
+		<script src="./dist/bundle.js?rev=5fbd8e292a56ecd01387beb2a958ed30"></script>
 </body>
 
 </html>

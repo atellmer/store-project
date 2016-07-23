@@ -4,7 +4,7 @@
 
 	window.onload = function () {
 
-		$('#carousel').slick({
+		$('[data-catalog-carousel]').slick({
 			infinite: false,
 			speed: 800,
 			slidesToShow: 4,
