@@ -5,23 +5,16 @@
 	angular.module('app')
 		.component('bashCertificate', {
 			templateUrl: './app/components/certificate/certificate.component.html',
-			controller: ['ngDialog', controller],
+			controller: ['Modals', controller],
 		});
 
-	function controller(ngDialog) {
+	function controller(Modals) {
 		var vm = this;
 
-		vm.clickToOpen = clickToOpen;
+		vm.showModal = Modals.showModal;
 
 		activate();
 
 		function activate() {}
-
-		function clickToOpen(templateId) {
-			ngDialog.open({
-				template: templateId,
-				className: 'ngdialog-theme-default'
-			});
-		}
 	}
 })();

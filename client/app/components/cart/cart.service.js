@@ -14,6 +14,7 @@
 			cartBuffer: [],
 			addToCart: addToCart,
 			deleteFromCart: deleteFromCart,
+			clearCart: clearCart,
 		};
 
 		return service;
@@ -40,6 +41,12 @@
 			}
 
 			console.log('delete cart item [CartService]:', service.cart);
+		}
+
+		function clearCart() {
+			service.cart = [];
+
+			console.log('clear cart [CartService]:', service.cart);
 		}
 
 		function completeCart() {
