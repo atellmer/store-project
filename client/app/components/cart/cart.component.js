@@ -74,8 +74,9 @@
 				var container = document.querySelector('[data-iframe-order]');
 				var iframe = document.createElement('iframe');
 				var sum = CartService.sum;
+				var domen = document.location.hostname;
 					
-				var src = 'https://money.yandex.ru/embed/shop.xml?account=410011483894113&quickpay=shop&payment-type-choice=on&mobile-payment-type-choice=on&writer=seller&targets=%D0%9F%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B0+%D0%BC%D1%91%D0%B4%D0%B0&targets-hint=&default-sum=' + sum + '&button-text=01&fio=on&mail=on&phone=on&address=on&successURL=http%3A%2F%2Fangular.tellmer.com%2F';
+				var src = 'https://money.yandex.ru/embed/shop.xml?account=410011483894113&quickpay=shop&payment-type-choice=on&mobile-payment-type-choice=on&writer=seller&targets=%D0%9F%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B0+%D0%91%D0%B0%D1%88%D0%BA%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE+%D0%BC%D1%91%D0%B4%D0%B0&default-sum=' + sum + '&button-text=01&fio=on&phone=on&address=on&successURL=http%3A%2F%2F' + domen + '%2F';
 				iframe.setAttribute('frameborder', '0');
 				iframe.setAttribute('allowtransparency', 'true');
 				iframe.setAttribute('scrolling', 'no');
@@ -85,9 +86,18 @@
 
 				container.appendChild(iframe);
 			}, 100);
+
+				var data = {
+					type: 'Новый Заказ',
+					phone: vm.phone,
+					cart: CartService.cart,
+				};
+				console.log('Данные нового заказа: ', data);
 		}
 
+
 		function send(event) {
+			/*
 			var target = angular.element(event.target);
 			var type = target.closest('[data-modal-type]').attr('data-modal-type');
 
@@ -106,11 +116,20 @@
 				};
 				console.log('Данные нового заказа: ', data);
 			}
+			if (type === 'new-order') {
+				var phone = document.querySelector('[data-modal-type=' + type +'] [data-input-phone]').value;
+				var data = {
+					type: 'Новый Заказ',
+					phone: phone,
+					cart: CartService.cart,
+				};
+				console.log('Данные нового заказа: ', data);
+			}
 
 			modal.close();
 			CartService.clearCart();
 			vm.cart = CartService.cart;
-			closeCart();
+			closeCart();*/
 		}
 	}
 })();

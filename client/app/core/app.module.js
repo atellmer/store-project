@@ -7,5 +7,6 @@
 		'ngDialog',
 		'ngScrollbars',
 		'duScroll',
+		'valdr',
 	]);
 })();

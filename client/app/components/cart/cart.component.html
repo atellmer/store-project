@@ -19,11 +19,39 @@
 	<div class="cart__sum">
 		Сумма заказа: {{ $ctrl.sum }}
 	</div>
-	<div data-ng-if="$ctrl.cart.length > 0" class="btn-container">
-		<div data-hm-tap="$ctrl.showModal('order-modal')" class="cart__order-btn">
-			<span>Оформить заказ</span>
+
+	<form 
+		data-ng-if="$ctrl.cart.length > 0" 
+		name="PhoneForm" 
+		novalidate 
+		valdr-type="PhoneForm" 
+		role="form" 
+		class="cart__form">
+		<ul class="cart__notice">
+			<li>1. Заполните ваш номер телефона для связи</li>
+			<li>2. Нажмите на кнопку «Оформить заказ»</li>
+			<li>3. Затем выберите способ оплаты</li>
+		</ul>
+		<div  class="btn-container">
+			<div class="input-group cart__input-group">
+				<input 
+					data-ng-model="$ctrl.phone" 
+					type="text" 
+					id="phone"
+					name="phone" 
+					placeholder="Ваш любой доступный телефон" 
+					class="form-control cart__input" 
+					required>
+			</div>
+			<button 
+				data-hm-tap="$ctrl.showModal('order-modal')" 
+				data-ng-disabled="PhoneForm.$invalid" 
+				data-ng-class="{'disabled': PhoneForm.$invalid}" 
+				class="cart__order-btn">
+				Оформить заказ
+			</button>
 		</div>
-	</div>
+	</form>
 
 	<div class="cart__brand">
 		Башкирский мёд
@@ -57,10 +85,10 @@
 				<label for="adress">Адрес доставки:</label>
 				<textarea data-input-adress type="text" name="adress" placeholder="город, улица, дом, квартира..." class="form-control textarea"></textarea>
 			</div>
-		</div-->
+		</div>
+		<div data-hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div-->
 		<div class="bash-modal__body">
 			<div data-iframe-order></div>
 		</div>
-		<!--div data-hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div-->
 	</div>
 </script>
