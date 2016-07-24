@@ -11,6 +11,7 @@
 	function CartService(lkFunctions) {
 		var service = {
 			cart: [],
+			sum: 0,
 			cartBuffer: [],
 			addToCart: addToCart,
 			deleteFromCart: deleteFromCart,
@@ -20,15 +21,17 @@
 		return service;
 
 		////////////////
-		function addToCart(id, name, volume, amount) {
+		function addToCart(id, name, volume, amount, price) {
 			service.cartBuffer.push({
 				id: id,
 				name: name,
 				volume: volume,
-				amount: amount
+				amount: amount,
+				price: price,
 			});
 
 			completeCart();
+			getCartSum();
 
 			console.log('add to cart [CartService]:', service.cart);
 		}
@@ -39,14 +42,25 @@
 			if (index !== -1) {
 				service.cart.splice(index, 1);
 			}
+			getCartSum();
 
 			console.log('delete cart item [CartService]:', service.cart);
 		}
 
 		function clearCart() {
 			service.cart = [];
+			service.cart.sum = 0;
 
 			console.log('clear cart [CartService]:', service.cart);
+		}
+
+		function getCartSum() {
+			var sum = 0;
+			for (var i = 0, len = service.cart.length; i < len; i++) {
+				sum += service.cart[i].price * service.cart[i].amount;
+			}
+
+			service.sum = sum;
 		}
 
 		function completeCart() {
@@ -54,6 +68,7 @@
 			var name = '';
 			var volume = 0;
 			var amount = 0;
+			var price = 0;
 			var flag = false;
 			var k = 0;
 
@@ -71,6 +86,7 @@
 						name = service.cartBuffer[i].name;
 						volume += service.cartBuffer[i].volume;
 						amount += service.cartBuffer[i].amount;
+						price += service.cartBuffer[i].price;
 					}
 				}
 
@@ -83,6 +99,7 @@
 							name: name,
 							volume: volume,
 							amount: amount,
+							price: price,
 						};
 					} else {
 						service.cart.push({
@@ -90,6 +107,7 @@
 							name: name,
 							volume: volume,
 							amount: amount,
+							price: price,
 						});
 					}
 

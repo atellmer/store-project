@@ -17,6 +17,7 @@
 		var modal = '';
 
 		vm.cart = CartService.cart;
+		vm.sum = CartService.sum;
 
 		vm.closeCart = closeCart;
 		vm.openCart = openCart;
@@ -31,6 +32,7 @@
 		function activate() {
 			$scope.$on('cart:change', function(event, data) {
 				vm.cart = CartService.cart;
+				vm.sum = CartService.sum;
 				openCart();
 			});
 		}
@@ -57,6 +59,7 @@
 
 		function deleteFromCart(id) {
 			CartService.deleteFromCart(id);
+			vm.sum = CartService.sum;
 			if (vm.cart.length === 0) {
 				closeCart();
 			}
@@ -67,6 +70,20 @@
 			$timeout(function() {
 				var template = document.querySelector('.ngdialog');
 				$compile(template)($scope);
+
+				var container = document.querySelector('[data-iframe-order]');
+				var iframe = document.createElement('iframe');
+				var sum = CartService.sum;
+					
+				var src = 'https://money.yandex.ru/embed/shop.xml?account=410011483894113&quickpay=shop&payment-type-choice=on&mobile-payment-type-choice=on&writer=seller&targets=%D0%9F%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B0+%D0%BC%D1%91%D0%B4%D0%B0&targets-hint=&default-sum=' + sum + '&button-text=01&fio=on&mail=on&phone=on&address=on&successURL=http%3A%2F%2Fangular.tellmer.com%2F';
+				iframe.setAttribute('frameborder', '0');
+				iframe.setAttribute('allowtransparency', 'true');
+				iframe.setAttribute('scrolling', 'no');
+				iframe.setAttribute('width', '100%');
+				iframe.setAttribute('height', '200px');
+				iframe.setAttribute('src', src);
+
+				container.appendChild(iframe);
 			}, 100);
 		}
 
@@ -89,7 +106,6 @@
 				};
 				console.log('Данные нового заказа: ', data);
 			}
-
 
 			modal.close();
 			CartService.clearCart();

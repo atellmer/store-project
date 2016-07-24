@@ -14,7 +14,7 @@
 				id: 0,
 				name: 'Гречишный мёд',
 				image: './resources/img/content/med-1.png',
-				price: 500
+				price: 400
 			},
 			{
 				id: 1,
@@ -26,25 +26,25 @@
 				id: 2,
 				name: 'Цветочный мёд',
 				image: './resources/img/content/med-3.png',
-				price: 500
+				price: 600
 			},
 			{
 				id: 3,
 				name: 'Цветочный мёд',
 				image: './resources/img/content/med-1.png',
-				price: 500
+				price: 700
 			},
 			{
 				id: 4,
 				name: 'Липовый мёд',
 				image: './resources/img/content/med-2.png',
-				price: 500
+				price: 800
 			},
 			{
 				id: 5,
 				name: 'Прикольный мёд',
 				image: './resources/img/content/med-3.png',
-				price: 500
+				price: 900
 			}
 		];
 

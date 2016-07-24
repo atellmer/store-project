@@ -75,6 +75,13 @@
 			return amount;
 		}
 
+		function getPrice(id) {
+			var countEl = angular.element(document.querySelector('[' + attr + '="' + id + '"] [data-card-price]'));
+			var price = parseFloat(countEl.text());
+
+			return price;
+		}
+
 		function addToCart(event) {
 			var target = angular.element(event.target);
 			var parent = target.closest(attr);
@@ -82,12 +89,10 @@
 			var name = angular.element(document.querySelector('[' + attr + '="' + id + '"] [data-card-name]')).attr('data-card-name');
 			var volume = getVolume(id);
 			var amount = getAmount(id);
+			var price = getPrice(id);
 
-			CartService.addToCart(id, name, volume, amount);
-			openCart();
-		}
+			CartService.addToCart(id, name, volume, amount, price);
 
-		function openCart() {
 			$rootScope.$broadcast('cart:change', {
 				type: 'add',
 			});

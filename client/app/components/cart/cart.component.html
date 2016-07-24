@@ -16,6 +16,9 @@
 			Товары пока не добавлены...
 		</li>
 	</ul>
+	<div class="cart__sum">
+		Сумма заказа: {{ $ctrl.sum }}
+	</div>
 	<div data-ng-if="$ctrl.cart.length > 0" class="btn-container">
 		<div data-hm-tap="$ctrl.showModal('order-modal')" class="cart__order-btn">
 			<span>Оформить заказ</span>
@@ -37,7 +40,7 @@
 <script type="text/ng-template" id="order-modal">
 	<div data-modal-type="new-order" class="bash-modal">
 		<div class="bash-modal__header">Форма заказа</div>
-		<div class="bash-modal__body">
+		<!--div class="bash-modal__body">
 			<div class="input-group bash-input-group">
 				<label for="name">ФИО:</label>
 				<input data-input-name type="text" name="name" placeholder="Напишите ваше ФИО..." class="form-control">
@@ -54,7 +57,10 @@
 				<label for="adress">Адрес доставки:</label>
 				<textarea data-input-adress type="text" name="adress" placeholder="город, улица, дом, квартира..." class="form-control textarea"></textarea>
 			</div>
+		</div-->
+		<div class="bash-modal__body">
+			<div data-iframe-order></div>
 		</div>
-		<div data-hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div>
+		<!--div data-hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div-->
 	</div>
 </script>
