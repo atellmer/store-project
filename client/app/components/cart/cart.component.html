@@ -5,7 +5,12 @@
 	<div class="cart__title">Ваш заказ:</div>
 	<ul ng-scrollbars data-ng-if="$ctrl.cart.length > 0" class="cart__list">
 		<li data-ng-repeat="item in $ctrl.cart" class="cart__item">
-			<span>{{ ::$index + 1 }}. {{ ::item.name }} ({{ ::item.amount }} шт. по {{ ::item.volume }} мл.)</span>
+			<span>
+				{{ ::$index + 1 }}. 
+				{{ ::item.name }} 
+				<br>
+				<span class="cart__item-detail">({{ ::item.amount }} шт. по {{ ::item.volume }} л. на сумму {{ ::(item.price * item.amount * item.volume) }} р.)</span>
+			</span>
 			<span data-hm-tap="$ctrl.deleteFromCart(item.id)" class="cart__delete-btn">
 				<i class="material-icons cart__delete-icon">delete</i>
 			</span>
@@ -13,10 +18,10 @@
 	</ul>
 	<ul data-ng-if="$ctrl.cart.length === 0" class="cart__list">
 		<li class="cart__item">
-			Товары пока не добавлены...
+			В вашей корзине пока пусто :(
 		</li>
 	</ul>
-	<div class="cart__sum">
+	<div data-ng-if="$ctrl.cart.length > 0" class="cart__sum">
 		Сумма заказа: {{ $ctrl.sum }}
 	</div>
 
@@ -39,12 +44,12 @@
 					type="text" 
 					id="phone"
 					name="phone" 
-					placeholder="Ваш любой доступный телефон" 
+					placeholder="Ваш номер телефона" 
 					class="form-control cart__input" 
 					required>
 			</div>
 			<button 
-				data-hm-tap="$ctrl.showModal('order-modal')" 
+				data-hm-tap="$ctrl.showModal('order-modal'); $ctrl.sendLetter();" 
 				data-ng-disabled="PhoneForm.$invalid" 
 				data-ng-class="{'disabled': PhoneForm.$invalid}" 
 				class="cart__order-btn">
@@ -67,7 +72,7 @@
 
 <script type="text/ng-template" id="order-modal">
 	<div data-modal-type="new-order" class="bash-modal">
-		<div class="bash-modal__header">Форма заказа</div>
+		<div class="bash-modal__header">Форма оплаты</div>
 		<!--div class="bash-modal__body">
 			<div class="input-group bash-input-group">
 				<label for="name">ФИО:</label>

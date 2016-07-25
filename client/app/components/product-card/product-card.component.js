@@ -45,7 +45,7 @@
 
 		function getVolume(id) {
 			var radioBtn = angular.element(document.querySelector('[' + attr + '="' + id + '"] .js-product-card__radio-btn--active'));
-			var volume = parseInt(radioBtn.attr('data-radio-value'));
+			var volume = parseFloat(radioBtn.attr('data-radio-value')) / 1000;
 
 			return volume;
 		}

@@ -1,14 +1,14 @@
 ;
-(function() {
+(function () {
 	'use strict';
 
 	angular.module('app')
 		.component('bashCart', {
 			templateUrl: './app/components/cart/cart.component.html',
-			controller: ['$scope', '$compile', '$timeout', 'CartService', 'Modals',controller],
+			controller: ['$scope', '$http', '$compile', '$timeout', 'CartService', 'Modals', controller],
 		});
 
-	function controller($scope, $compile, $timeout, CartService, Modals) {
+	function controller($scope, $http, $compile, $timeout, CartService, Modals) {
 		var vm = this;
 
 		var cartEl = angular.element(document.querySelector('.js-cart'));
@@ -23,14 +23,14 @@
 		vm.openCart = openCart;
 		vm.deleteFromCart = deleteFromCart;
 		vm.showModal = showModal;
-		vm.send = send;
-		
+		vm.sendLetter = sendLetter;
+
 		activate();
 
 		////////////////
 
 		function activate() {
-			$scope.$on('cart:change', function(event, data) {
+			$scope.$on('cart:change', function (event, data) {
 				vm.cart = CartService.cart;
 				vm.sum = CartService.sum;
 				openCart();
@@ -67,7 +67,7 @@
 
 		function showModal(templateId) {
 			modal = Modals.showModal(templateId);
-			$timeout(function() {
+			$timeout(function () {
 				var template = document.querySelector('.ngdialog');
 				$compile(template)($scope);
 
@@ -75,7 +75,7 @@
 				var iframe = document.createElement('iframe');
 				var sum = CartService.sum;
 				var domen = document.location.hostname;
-					
+
 				var src = 'https://money.yandex.ru/embed/shop.xml?account=410011483894113&quickpay=shop&payment-type-choice=on&mobile-payment-type-choice=on&writer=seller&targets=%D0%9F%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B0+%D0%91%D0%B0%D1%88%D0%BA%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE+%D0%BC%D1%91%D0%B4%D0%B0&default-sum=' + sum + '&button-text=01&fio=on&phone=on&address=on&successURL=http%3A%2F%2F' + domen + '%2F';
 				iframe.setAttribute('frameborder', '0');
 				iframe.setAttribute('allowtransparency', 'true');
@@ -86,50 +86,27 @@
 
 				container.appendChild(iframe);
 			}, 100);
-
-				var data = {
-					type: 'Новый Заказ',
-					phone: vm.phone,
-					cart: CartService.cart,
-				};
-				console.log('Данные нового заказа: ', data);
 		}
 
 
-		function send(event) {
-			/*
-			var target = angular.element(event.target);
-			var type = target.closest('[data-modal-type]').attr('data-modal-type');
+		function sendLetter() {
+			var root = 'ajax/index.php';
+			var req = 'order';
 
-			if (type === 'new-order') {
-				var name = document.querySelector('[data-modal-type=' + type +'] [data-input-name]').value + '';
-				var phone = document.querySelector('[data-modal-type=' + type +'] [data-input-phone]').value + '';
-				var email = document.querySelector('[data-modal-type=' + type +'] [data-input-email]').value + '';
-				var adress = document.querySelector('[data-modal-type=' + type +'] [data-input-adress]').value + '';
-				var data = {
-					type: 'Новый Заказ',
-					name: name,
-					phone: phone,
-					email: email,
-					adress: adress,
-					cart: CartService.cart,
-				};
-				console.log('Данные нового заказа: ', data);
-			}
-			if (type === 'new-order') {
-				var phone = document.querySelector('[data-modal-type=' + type +'] [data-input-phone]').value;
-				var data = {
-					type: 'Новый Заказ',
-					phone: phone,
-					cart: CartService.cart,
-				};
-				console.log('Данные нового заказа: ', data);
-			}
+			var data = {
+				type: 'Новый Заказ',
+				phone: vm.phone,
+				cart: CartService.cart,
+				sum: CartService.sum,
+			};
+			var json = JSON.stringify(data);
+			var url = root + '?' + req + '=' + json;
+			
+			console.log('Данные нового заказа: ', data);
 
-			modal.close();
-			CartService.clearCart();
-			vm.cart = CartService.cart;
-			closeCart();*/
+			$http.get(url).success(function (response) {
+				console.log('response: ', response);
+			});
 		}
 	}
 })();

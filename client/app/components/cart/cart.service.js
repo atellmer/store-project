@@ -57,7 +57,7 @@
 		function getCartSum() {
 			var sum = 0;
 			for (var i = 0, len = service.cart.length; i < len; i++) {
-				sum += service.cart[i].price * service.cart[i].amount;
+				sum += service.cart[i].price * service.cart[i].amount * service.cart[i].volume;
 			}
 
 			service.sum = sum;
