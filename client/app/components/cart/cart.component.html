@@ -61,6 +61,12 @@
 	<div class="cart__brand">
 		Башкирский мёд
 	</div>
+	<button 
+		data-ng-if="$ctrl.cart.length > 0"
+		data-hm-tap="$ctrl.clearCart()"
+		class="cart__clear-btn">
+		Очистить корзину
+	</button>
 	
 </div>
 
@@ -73,25 +79,6 @@
 <script type="text/ng-template" id="order-modal">
 	<div data-modal-type="new-order" class="bash-modal">
 		<div class="bash-modal__header">Форма оплаты</div>
-		<!--div class="bash-modal__body">
-			<div class="input-group bash-input-group">
-				<label for="name">ФИО:</label>
-				<input data-input-name type="text" name="name" placeholder="Напишите ваше ФИО..." class="form-control">
-			</div>
-			<div class="input-group bash-input-group">
-				<label for="phone">Телефон:</label>
-				<input data-input-phone type="text" name="phone" placeholder="Ваш любой доступный номер" class="form-control">
-			</div>
-			<div class="input-group bash-input-group">
-				<label for="email">Email:</label>
-				<input data-input-email type="text" name="email" placeholder="email для связи" class="form-control">
-			</div>
-			<div class="input-group bash-input-group">
-				<label for="adress">Адрес доставки:</label>
-				<textarea data-input-adress type="text" name="adress" placeholder="город, улица, дом, квартира..." class="form-control textarea"></textarea>
-			</div>
-		</div>
-		<div data-hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div-->
 		<div class="bash-modal__body">
 			<div data-iframe-order></div>
 		</div>

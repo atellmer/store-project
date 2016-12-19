@@ -22,6 +22,7 @@
     vm.closeCart = closeCart;
     vm.openCart = openCart;
     vm.deleteFromCart = deleteFromCart;
+    vm.clearCart = clearCart;
     vm.showModal = showModal;
     vm.sendLetter = sendLetter;
 
@@ -67,6 +68,11 @@
       }
     }
 
+    function clearCart() {
+      CartService.clearCart();
+      closeCart();
+    }
+
     function showModal(templateId) {
       modal = Modals.showModal(templateId);
       $timeout(function () {
@@ -75,7 +81,7 @@
 
         var container = document.querySelector('[data-iframe-order]');
         var iframe = document.createElement('iframe');
-        var sum = CartService.sum;
+        var sum = vm.sum;
         var domen = document.location.hostname;
 
         var src = 'https://money.yandex.ru/embed/shop.xml?account=410011483894113&quickpay=shop&payment-type-choice=on&mobile-payment-type-choice=on&writer=seller&targets=%D0%9F%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B0+%D0%91%D0%B0%D1%88%D0%BA%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE+%D0%BC%D1%91%D0%B4%D0%B0&default-sum=' + sum + '&button-text=01&fio=on&phone=on&address=on&successURL=http%3A%2F%2F' + domen + '%2F';
@@ -92,22 +98,20 @@
 
 
     function sendLetter() {
-      var root = 'ajax/index.php';
-      var req = 'order';
-
+      var url = 'ajax/index.php';
       var data = {
         type: 'Новый Заказ',
         phone: vm.phone,
-        cart: CartService.cart,
-        sum: CartService.sum,
+        cart: vm.cart,
+        sum: vm.sum,
       };
-      var json = JSON.stringify(data);
-      var url = root + '?' + req + '=' + json;
+      var config = {
+        params: {'order': JSON.stringify(data)}
+      };
 
-      console.log('Данные нового заказа: ', data);
-
-      $http.get(url).success(function (response) {
-        console.log('response: ', response);
+      $http.get(url, config)
+        .then(function (res) {
+        console.log('response: ', res);
       });
     }
   }
