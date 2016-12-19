@@ -1,120 +1,114 @@
 <!DOCTYPE html>
 <html lang="ru" data-ng-app="app">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
-	<title>Купить башкирский мёд</title>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css">
-	<link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css">
-	<link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.min.css">
-	<link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
-	<link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" href="dist/bundle.css?rev=f0606f7e2ad14fb7e9b57bd652b937d1">
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	<!--?rev=@@hash-->
-	<style>
-		[ng\:cloak],
-		[ng-cloak],
-		[data-ng-cloak],
-		[x-ng-cloak],
-		.ng-cloak,
-		.x-ng-cloak {
-			display: none!important;
-		}
-	</style>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <title>Купить башкирский мёд</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css">
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.min.css">
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
+    <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="dist/bundle.css?rev=04b244fded09caa0b25423b42b43a082">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!--?rev=@@hash-->
+    <style>
+      [ng\:cloak],
+      [ng-cloak],
+      [data-ng-cloak],
+      [x-ng-cloak],
+      .ng-cloak,
+      .x-ng-cloak {
+        display: none!important;
+      }
+    </style>
+  </head>
 
-<body data-ng-cloak class="likearts-content" data-ng-controller="SharedController as shared">
-	<div class="container-fluid">
-
-		<div class="section section--1" style="background-image: url('./resources/img/bg/bg--1.png');">
-			<div class="container">
-				<header class="header">
-					<div class="header__logo" style="background-image: url('./resources/img/logo/logo.png');"></div>
-					<div class="phone">
-						<div class="phone__text">По всем вопросам</div>
-						<div class="phone__number">+7 917 04-86-866</div>
-					</div>
-				</header>
-				<section class="content">
-					<h1 class="content__title content__title--h1">Купить башкирский мёд</h1>
-					<h2 class="content__title content__title--h2">с доставкой по России и СНГ</h2>
-					<div class="content__flex">
-						<div class="column column--left">
-							<img src="./resources/img/content/1.png" class="img-responsive content__pic" alt="">
-						</div>
-						<div class="column column--right">
-							<img src="./resources/img/content/2.png" class="img-responsive content__pic content__pic--small" alt="">
-							<div data-hm-tap="shared.scrollTo('[data-scroll-to]')" class="button">Заказать</div>
-							<div class="content__label">При заказе через сайт, книга в подарок</div>
-						</div>
-
-					</div>
-					<div class="bee-container">
-						<div class="bee bee--john"></div>
-					</div>
-				</section>
-			</div>
-			<div class="waves"></div>
-		</div>
-
-		<div data-scroll-to class="section section--2">
-			<div class="container">
-				<div class="products js-products">
-					<div data-catalog-carousel>
-						<bash-product-card product="product" data-ng-repeat="product in shared.products track by product.id"></bash-product-card>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="section section--3" style="background-image: url('./resources/img/bg/bg--2.png');">
-			<div class="container">
-				<div class="content">
-					<h2 class="content__title content__title--h2">Где рождается наш мёд</h2>
-					<div class="content__video">
-						<iframe class="iframe" src="https://www.youtube.com/embed/MVuCKVOaZec" frameborder="0" allowfullscreen></iframe>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="section section--4">
-			<div class="container">
-				<div class="content">
-					<bash-feedback></bash-feedback>
-					<bash-certificate></bash-certificate>
-				</div>
-			</div>
-		</div>
-
-		<div class="section section--5">
-			<bash-map></bash-map>
-		</div>
-
-		<div class="section section--6">
-			<footer class="footer">
-				<div class="footer__copy">Башкирский Мёд &copy {{ ::shared.year}}</div>
-			</footer>
-		</div>
-
-		<bash-cart></bash-cart>
-
-		<script src="bower_components/jquery/dist/jquery.min.js"></script>
-		<script src="bower_components/angular/angular.min.js"></script>
-		<script src="bower_components/hammerjs/hammer.min.js"></script>
-		<script src="bower_components/angular-hammer/angular-hammer.js"></script>
-		<script src="bower_components/slick-carousel/slick/slick.min.js"></script>
-		<script src="bower_components/ng-dialog/js/ngDialog.min.js"></script>
-		<script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-		<script src="bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
-		<script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
-		<script src="bower_components/valdr/valdr.min.js"></script>
-		<script src="bower_components/valdr/valdr-message.min.js"></script>
-		<script src="dist/bundle.js?rev=2af884958fe896f5452fe4ac1bddd735"></script>
-</body>
+  <body data-ng-cloak class="likearts-content" data-ng-controller="SharedController as shared">
+    <div class="container-fluid">
+      <div class="section section--1" style="background-image: url('./resources/img/bg/bg--1.png');">
+        <div class="container">
+          <header class="header">
+            <div class="header__logo" style="background-image: url('./resources/img/logo/logo.png');"></div>
+            <div class="phone">
+              <div class="phone__text">По всем вопросам</div>
+              <div class="phone__number">+7 917 04-86-866</div>
+            </div>
+          </header>
+          <section class="content">
+            <h1 class="content__title content__title--h1">Купить башкирский мёд</h1>
+            <h2 class="content__title content__title--h2">с доставкой по России и СНГ</h2>
+            <div class="content__flex">
+              <div class="column column--left">
+                <img src="./resources/img/content/1.png" class="img-responsive content__pic" alt="">
+              </div>
+              <div class="column column--right">
+                <img src="./resources/img/content/2.png" class="img-responsive content__pic content__pic--small" alt="">
+                <div data-hm-tap="shared.scrollTo('[data-scroll-to]')" class="button">Заказать</div>
+                <div class="content__label">При заказе через сайт, книга в подарок</div>
+              </div>
+            </div>
+            <div class="bee-container">
+              <div class="bee bee--john"></div>
+            </div>
+          </section>
+        </div>
+        <div class="waves"></div>
+      </div>
+      <div data-scroll-to class="section section--2">
+        <div class="container">
+          <div class="products js-products">
+            <div data-catalog-carousel>
+              <bash-product-card product="product" data-ng-repeat="product in shared.products track by product.id">
+              </bash-product-card>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section section--3" style="background-image: url('./resources/img/bg/bg--2.png');">
+        <div class="container">
+          <div class="content">
+            <h2 class="content__title content__title--h2">Где рождается наш мёд</h2>
+            <div class="content__video">
+              <iframe class="iframe" src="https://www.youtube.com/embed/MVuCKVOaZec" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section section--4">
+        <div class="container">
+          <div class="content">
+            <bash-feedback></bash-feedback>
+            <bash-certificate></bash-certificate>
+          </div>
+        </div>
+      </div>
+      <div class="section section--5">
+        <bash-map></bash-map>
+      </div>
+      <div class="section section--6">
+        <footer class="footer">
+          <div class="footer__copy">Башкирский Мёд &copy {{ ::shared.year}}</div>
+        </footer>
+      </div>
+      <bash-cart></bash-cart>
+      <script src="bower_components/jquery/dist/jquery.min.js"></script>
+      <script src="bower_components/angular/angular.min.js"></script>
+      <script src="bower_components/spawn.js/spawn.min.js"></script>
+      <script src="bower_components/hammerjs/hammer.min.js"></script>
+      <script src="bower_components/angular-hammer/angular-hammer.js"></script>
+      <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
+      <script src="bower_components/ng-dialog/js/ngDialog.min.js"></script>
+      <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
+      <script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
+      <script src="bower_components/valdr/valdr.min.js"></script>
+      <script src="bower_components/valdr/valdr-message.min.js"></script>
+      <script src="bower_components/device.js/lib/device.min.js"></script>
+      <script src="dist/bundle.js?rev=a8d51ba342bd88967047e4e15f78e4a6"></script>
+  </body>
 
 </html>

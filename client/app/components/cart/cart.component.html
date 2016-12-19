@@ -11,7 +11,7 @@
 				<br>
 				<span class="cart__item-detail">({{ ::item.amount }} шт. по {{ ::item.volume }} л. на сумму {{ ::(item.price * item.amount * item.volume) }} р.)</span>
 			</span>
-			<span data-hm-tap="$ctrl.deleteFromCart(item.id)" class="cart__delete-btn">
+			<span data-ng-click="$ctrl.deleteFromCart(item.id)" class="cart__delete-btn">
 				<i class="material-icons cart__delete-icon">delete</i>
 			</span>
 		</li>

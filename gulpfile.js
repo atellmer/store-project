@@ -37,17 +37,6 @@ var path = {
 	}
 };
 
-var task = {
-	componentScripts: '',
-	componentStyles: '',
-	componentTemplates: '',
-	sprite: '',
-	hashFiles: '',
-	imageMin: ''
-};
-
-var prettify = true;
-
 //connect
 gulp.task('connect', function () {
 	connect.server({
@@ -59,7 +48,9 @@ gulp.task('connect', function () {
 
 //component-scripts
 gulp.task('component-scripts', function () {
-	task.componentScripts = gulp.src([
+  var task;
+
+	task = gulp.src([
 		path.app() + '**/*.module.js',
 		path.app() + '**/*.config.js',
 		path.app() + '**/*.service.js',
@@ -70,21 +61,19 @@ gulp.task('component-scripts', function () {
 		.pipe(concat('bundle.js'));
 
 	if (!config.debug) {
-		task.componentScripts
+		task
 			.pipe(uglify());
 	}
 
-	task.componentScripts = task.componentScripts
+	return task
 		.pipe(gulp.dest(path.dist()))
 		.pipe(connect.reload());
-
-	return task.componentScripts;
 });
 
 //component-styles
 gulp.task('component-styles', function () {
-	task.componentStyles = gulp.src([
-		path.components() + '**/shared.styl',
+	return gulp.src([
+		path.app() + '**/shared.styl',
 		path.components() + '**/*.styl'])
 		.pipe(concat('bundle.styl'))
 		.pipe(stylus({
@@ -93,60 +82,50 @@ gulp.task('component-styles', function () {
 		}))
 		.pipe(gulp.dest(path.dist()))
 		.pipe(connect.reload());
-
-	return task.componentStyles;
 });
 
 //component-templates
 gulp.task('component-templates', function () {
-	task.componentTemplates = gulp.src(path.root + '**/*.html')
+	return gulp.src(path.root + '**/*.html')
 		.pipe(connect.reload());
-
-	return task.componentTemplates;
 });
 
 //sprite
 gulp.task('sprite', function () {
-	task.sprite = gulp.src(path.icons() + 'source/**/*.{jpg,jpeg,png,gif}')
+	return gulp.src(path.icons() + 'source/**/*.{jpg,jpeg,png,gif}')
 		.pipe(spritesmith({
 			imgName: 'sprite.png',
 			cssName: 'sprite.css'
 		}))
 		.pipe(gulp.dest(path.icons() + 'sprite/'));
-
-	return task.sprite;
 });
 
 //hash-files
 gulp.task('hash-files', function () {
-	task.hashFiles = gulp.src(path.root + '**/*.html')
+	return gulp.src(path.root + '**/*.html')
 		.pipe(rev())
 		.pipe(gulp.dest(function (file) {
 			return file.base;
 		}))
 		.pipe(connect.reload());
-
-	return task.hashFiles;
 });
 
 //image-min
 gulp.task('image-min', function () {
-	task.imageMin = gulp.src(path.img() + '**/*.{jpg,jpeg,png}')
+	return gulp.src(path.img() + '**/*.{jpg,jpeg,png}')
 		.pipe(tinypng('qxIGxLiWrmjcSr4aVcby1RzsZoK-HFML'))
 		.pipe(gulp.dest(function (file) {
 			return file.base;
 		}))
 		.pipe(connect.reload());
-
-	return task.imageMin;
 });
 
 //watch
 gulp.task('watch', function () {
-	gulp.watch(path.app() + '**/*.js', ['component-scripts', 'hash-files']);
+	gulp.watch(path.app() + '**/*.js', ['component-scripts']);
 	gulp.watch([
-		path.components() + '**/common.component.styl',
-		path.components() + '**/*.styl'], ['component-styles', 'hash-files']);
+    path.app() + '**/shared.styl',
+    path.components() + '**/*.styl'], ['component-styles']);
 	gulp.watch(path.root + '**/*.html', ['component-templates']);
 	gulp.watch(path.icons() + 'source/**/*.*', ['sprite']);
 });

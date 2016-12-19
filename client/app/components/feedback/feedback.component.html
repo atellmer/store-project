@@ -1,30 +1,29 @@
 <div data-testimonials-carousel class="feedback">
-	<div class="feedback__item" data-ng-repeat="item in $ctrl.feedback">
-		<div class="feedback__item-header">
-			{{ ::item.name }}
-		</div>
-		<div class="feedback__item-body">
-			<p>{{ ::item.feed }}</p>
-		</div>
-	</div>
+  <div class="feedback__item" data-ng-repeat="item in $ctrl.feedback">
+    <div class="feedback__item-header">
+      {{ ::item.name }}
+    </div>
+    <div class="feedback__item-body">
+      <p>{{ ::item.feed }}</p>
+    </div>
+  </div>
 </div>
 <div class="btn-container">
-	<div data-hm-tap="$ctrl.showModal('feedback-modal')" class="feedback__btn">Написать отзыв</div>
+  <div data-hm-tap="$ctrl.showModal('feedback-modal')" class="feedback__btn">Написать отзыв</div>
 </div>
-
 <script type="text/ng-template" id="feedback-modal">
-	<div data-modal-type="feedback" class="bash-modal">
-		<div class="bash-modal__header">Оставьте отзыв</div>
-		<div class="bash-modal__body">
-			<div class="input-group bash-input-group">
-				<label for="name">Имя и Фамилия:</label>
-				<input data-input-name type="text" name="name" placeholder="Напишите ваше имя и фамилию..." class="form-control">
-			</div>
-			<div class="input-group bash-input-group">
-				<label for="feedback">Отзыв:</label>
-				<textarea data-input-feedback type="text" name="feedback" placeholder="Оставьте отзыв..." class="form-control textarea"></textarea>
-			</div>
-		</div>
-		<div data-hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div>
-	</div>
+  <div data-modal-type="feedback" class="bash-modal">
+    <div class="bash-modal__header">Оставьте отзыв</div>
+    <div class="bash-modal__body">
+      <div class="input-group bash-input-group">
+        <label for="name">Имя и Фамилия:</label>
+        <input data-input-name type="text" name="name" placeholder="Напишите ваше имя и фамилию..." class="form-control">
+      </div>
+      <div class="input-group bash-input-group">
+        <label for="feedback">Отзыв:</label>
+        <textarea data-input-feedback type="text" name="feedback" placeholder="Оставьте отзыв..." class="form-control textarea"></textarea>
+      </div>
+    </div>
+    <div data-hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div>
+  </div>
 </script>

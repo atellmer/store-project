@@ -1,121 +1,121 @@
 ;
 (function () {
-	'use strict';
+  'use strict';
 
-	angular
-		.module('app')
-		.factory('CartService', CartService);
+  angular
+    .module('app')
+    .factory('CartService', CartService);
 
-	CartService.$inject = ['lkFunctions'];
+  CartService.$inject = ['Store', 'lkFunctions'];
 
-	function CartService(lkFunctions) {
-		var service = {
-			cart: [],
-			sum: 0,
-			cartBuffer: [],
-			addToCart: addToCart,
-			deleteFromCart: deleteFromCart,
-			clearCart: clearCart,
-		};
+  function CartService(Store, lkFunctions) {
+    var service = {
+      cart: [],
+      sum: 0,
+      cartBuffer: [],
+      addToCart: addToCart,
+      deleteFromCart: deleteFromCart,
+      clearCart: clearCart,
+    };
 
-		return service;
+    return service;
 
-		////////////////
-		function addToCart(id, name, volume, amount, price) {
-			service.cartBuffer.push({
-				id: id,
-				name: name,
-				volume: volume,
-				amount: amount,
-				price: price,
-			});
+    ////////////////
+    function addToCart(product) {
+      service.cartBuffer.push(product);
 
-			completeCart();
-			getCartSum();
+      completeCart();
+      getCartSum();
+      updateState();
+    }
 
-			console.log('add to cart [CartService]:', service.cart);
-		}
+    function deleteFromCart(id) {
+      var index = lkFunctions.getCurIndexObjectInArray(service.cart, 'id', id);
 
-		function deleteFromCart(id) {
-			var index = lkFunctions.getCurIndexObjectInArray(service.cart, 'id', id);
+      if (index !== -1) {
+        service.cart.splice(index, 1);
+      }
+      getCartSum();
+      updateState();
+    }
 
-			if (index !== -1) {
-				service.cart.splice(index, 1);
-			}
-			getCartSum();
+    function clearCart() {
+      service.cart = [];
+      service.cart.sum = 0;
 
-			console.log('delete cart item [CartService]:', service.cart);
-		}
+      updateState();
+    }
 
-		function clearCart() {
-			service.cart = [];
-			service.cart.sum = 0;
+    function getCartSum() {
+      var sum = 0;
+      for (var i = 0, len = service.cart.length; i < len; i++) {
+        sum += service.cart[i].price * service.cart[i].amount * service.cart[i].volume;
+      }
 
-			console.log('clear cart [CartService]:', service.cart);
-		}
+      service.sum = sum;
+    }
 
-		function getCartSum() {
-			var sum = 0;
-			for (var i = 0, len = service.cart.length; i < len; i++) {
-				sum += service.cart[i].price * service.cart[i].amount * service.cart[i].volume;
-			}
+    function completeCart() {
+      var id = 0;
+      var name = '';
+      var volume = 0;
+      var amount = 0;
+      var price = 0;
+      var flag = false;
+      var k = 0;
 
-			service.sum = sum;
-		}
+      for (var i = 0; i < service.cartBuffer.length; i++) {
 
-		function completeCart() {
-			var id = 0;
-			var name = '';
-			var volume = 0;
-			var amount = 0;
-			var price = 0;
-			var flag = false;
-			var k = 0;
+        id = 0;
+        name = '',
+          volume = 0;
+        amount = 0;
 
-			for (var i = 0; i < service.cartBuffer.length; i++) {
+        for (var j = 0; j < service.cartBuffer.length; j++) {
+          if (service.cartBuffer[i].id === service.cartBuffer[j].id) {
+            flag = true;
+            id = service.cartBuffer[i].id;
+            name = service.cartBuffer[i].name;
+            volume += service.cartBuffer[i].volume;
+            amount += service.cartBuffer[i].amount;
+            price += service.cartBuffer[i].price;
+          }
+        }
 
-				id = 0;
-				name = '',
-				volume = 0;
-				amount = 0;
+        if (flag) {
+          var index = lkFunctions.getCurIndexObjectInArray(service.cart, 'id', id);
 
-				for (var j = 0; j < service.cartBuffer.length; j++) {
-					if (service.cartBuffer[i].id === service.cartBuffer[j].id) {
-						flag = true;
-						id = service.cartBuffer[i].id;
-						name = service.cartBuffer[i].name;
-						volume += service.cartBuffer[i].volume;
-						amount += service.cartBuffer[i].amount;
-						price += service.cartBuffer[i].price;
-					}
-				}
+          if (index !== -1) {
+            service.cart[index] = {
+              id: id,
+              name: name,
+              volume: volume,
+              amount: amount,
+              price: price,
+            };
+          } else {
+            service.cart.push({
+              id: id,
+              name: name,
+              volume: volume,
+              amount: amount,
+              price: price,
+            });
+          }
 
-				if (flag) {
-					var index = lkFunctions.getCurIndexObjectInArray(service.cart, 'id', id);
+          flag = false;
+        }
+      }
 
-					if (index !== -1) {
-						service.cart[index] = {
-							id: id,
-							name: name,
-							volume: volume,
-							amount: amount,
-							price: price,
-						};
-					} else {
-						service.cart.push({
-							id: id,
-							name: name,
-							volume: volume,
-							amount: amount,
-							price: price,
-						});
-					}
+      service.cartBuffer = [];
+    }
 
-					flag = false;
-				}
-			}
-
-			service.cartBuffer = [];
-		}
-	}
+    function updateState() {
+      Store.update('root.cart.value', service.cart);
+      Store.update('root.cart.sum', service.sum);
+  
+      localStorage.setItem('state', JSON.stringify(Store.getState()));
+      console.log('state: ', Store.getState().root);
+    }
+  }
 })();
