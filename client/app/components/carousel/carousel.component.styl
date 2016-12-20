@@ -2,12 +2,13 @@
 
 .slick-slide
 	&:focus
-		outline none!important
-
+		outline none !important
 
 .slick-prev, .slick-next
+	@media screen and (max-width: 1340px)
+		display none !important
 	
 	&:before
 		color $secondary-color
 		@media screen and (max-width: 1340px)
-			display: none
+			display none !important

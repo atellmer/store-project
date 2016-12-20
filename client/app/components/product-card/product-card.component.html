@@ -11,21 +11,21 @@
       <div class="product-card__volume">
         <div class="product-card__volume-item">
           <div
-            hm-tap="$ctrl.setVolume($event)"
+            ng-click="$ctrl.setVolume($event)"
             radio-value="500"
             class="product-card__radio-btn js-product-card__radio-btn js-product-card__radio-btn--active"></div>
           <div class="product-card__label">500 мл</div>
         </div>
         <div class="product-card__volume-item">
           <div
-            hm-tap="$ctrl.setVolume($event)"
+            ng-click="$ctrl.setVolume($event)"
             radio-value="1000"
             class="product-card__radio-btn js-product-card__radio-btn"></div>
           <div class="product-card__label">1000 мл</div>
         </div>
         <div class="product-card__volume-item">
           <div
-            hm-tap="$ctrl.setVolume($event)"
+            ng-click="$ctrl.setVolume($event)"
             radio-value="3000"
             class="product-card__radio-btn js-product-card__radio-btn"></div>
           <div class="product-card__label">3000 мл</div>
@@ -33,13 +33,13 @@
       </div>
       <div class="product-card__amount">
         <div
-          hm-tap="$ctrl.setAmount($event, -1)"
+          ng-click="$ctrl.setAmount($event, -1)"
           class="product-card__amount-btn product-card__amount-btn--decrement">
           <i class="material-icons product-card__amount-icon">remove</i>
         </div>
         <div class="product-card__amount-count js-product-card__amount-count">1</div>
         <div
-          hm-tap="$ctrl.setAmount($event, 1)"
+          ng-click="$ctrl.setAmount($event, 1)"
           class="product-card__amount-btn product-card__amount-btn--increment">
           <i class="material-icons product-card__amount-icon">add</i>
         </div>
@@ -48,6 +48,6 @@
         <span card-price>{{ ::$ctrl.product.price }} </span> &nbsp руб./литр
       </div>
     </div>
-    <div hm-tap="$ctrl.addToCart($event)" class="product-card__button">В корзину</div>
+    <div ng-click="$ctrl.addToCart($event)" class="product-card__button">В корзину</div>
   </div>
 </div>

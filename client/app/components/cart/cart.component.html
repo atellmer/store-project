@@ -1,5 +1,5 @@
 <div class="cart js-cart">
-	<div hm-tap="$ctrl.closeCart()" class="cart__close-btn">
+	<div ng-click="$ctrl.closeCart()" class="cart__close-btn">
 		<i class="material-icons cart__icon">close</i>
 	</div>
 	<div class="cart__title">Ваш заказ:</div>
@@ -11,7 +11,7 @@
 				<br>
 				<span class="cart__item-detail">({{ ::item.amount }} шт. по {{ ::item.volume }} л. на сумму {{ ::(item.price * item.amount * item.volume) }} р.)</span>
 			</span>
-			<span hm-tap="$ctrl.deleteFromCart(item.id)" class="cart__delete-btn">
+			<span ng-click="$ctrl.deleteFromCart(item.id)" class="cart__delete-btn">
 				<i class="material-icons cart__delete-icon">delete</i>
 			</span>
 		</li>
@@ -49,7 +49,7 @@
 					required>
 			</div>
 			<button 
-				hm-tap="$ctrl.showModal('order-modal'); $ctrl.sendLetter();" 
+				ng-click="$ctrl.showModal('order-modal'); $ctrl.sendLetter();" 
 				ng-disabled="PhoneForm.$invalid" 
 				ng-class="{'disabled': PhoneForm.$invalid}" 
 				class="cart__order-btn">
@@ -63,14 +63,14 @@
 	</div>
 	<button 
 		ng-if="$ctrl.cart.length > 0"
-		hm-tap="$ctrl.clearCart()"
+		ng-click="$ctrl.clearCart()"
 		class="cart__clear-btn">
 		Очистить корзину
 	</button>
 	
 </div>
 
-<div cart-btn class="cart-btn" hm-tap="$ctrl.openCart()">
+<div cart-btn class="cart-btn" ng-click="$ctrl.openCart()">
 	<i ng-if="$ctrl.cart.length === 0" class="material-icons cart-btn__icon">add_shopping_cart</i>
 	<i ng-if="$ctrl.cart.length > 0" class="material-icons cart-btn__icon">shopping_cart</i>
 	<span class="cart-btn__count">{{ $ctrl.cart.length }}</span>

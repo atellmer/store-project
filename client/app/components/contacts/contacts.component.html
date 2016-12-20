@@ -4,8 +4,8 @@
   <span class="contacts__item">Почта: 
 		<a href="mailto:somemail@gmail.com">somemail@gmail.com</a>
 	</span>
-  <div hm-tap="$ctrl.showModal('phone-modal')" class="contacts__btn contacts__btn--red">Заказать звонок</div>
-  <div hm-tap="$ctrl.showModal('email-modal')" class="contacts__btn contacts__btn--green">Написать нам</div>
+  <div ng-click="$ctrl.showModal('phone-modal')" class="contacts__btn contacts__btn--red">Заказать звонок</div>
+  <div ng-click="$ctrl.showModal('email-modal')" class="contacts__btn contacts__btn--green">Написать нам</div>
 </div>
 <script type="text/ng-template" id="phone-modal">
   <div modal-type="order-phone" class="bash-modal">
@@ -20,7 +20,7 @@
         <input input-phone type="text" name="phone" placeholder="Введите ваш телефон..." class="form-control">
       </div>
     </div>
-    <div hm-tap="$ctrl.send($event)" class="bash-modal__btn">Заказать звонок</div>
+    <div ng-click="$ctrl.send($event)" class="bash-modal__btn">Заказать звонок</div>
   </div>
 </script>
 <script type="text/ng-template" id="email-modal">
@@ -36,6 +36,6 @@
         <textarea input-message type="text" name="message" placeholder="Ваш вопрос..." class="form-control textarea"></textarea>
       </div>
     </div>
-    <div hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div>
+    <div ng-click="$ctrl.send($event)" class="bash-modal__btn">Отправить</div>
   </div>
 </script>
