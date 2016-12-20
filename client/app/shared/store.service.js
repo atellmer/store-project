@@ -11,10 +11,7 @@
   function Store() {
     var initialState = {
       root: {
-        cart: {
-          value: [],
-          sum: 0
-        },
+        cart: {},
         products: [],
         feedback: []
       }

@@ -14,12 +14,14 @@
 	border-bottom 8px solid #bd3304
 	@extend .cover, .transition
 	background-image url(../app/components/button/img/btn.png)
-	@media screen and (max-width: 1200px)
+	@media (max-width: 1200px)
 		font-size 3.2rem
 		padding 20px 80px
-	@media screen and (max-width: 992px)
+	@media (max-width: 992px)
 		font-size 2rem
 		padding 10px 60px
 		border-radius 5px
 		border-bottom 3px solid #bd3304
 		margin 20px 0
+	&:active
+		transform scale(0.95)

@@ -1,5 +1,10 @@
 @import 'nib'
 
+.likearts-content bash-product-card
+	display block
+	width auto
+	height auto
+
 .likearts-content .product-card
 	height auto
 	background-color #fff
@@ -21,7 +26,7 @@
 		margin 0
 		@media screen and (max-width: $phone)
 			font-size 1.5rem
-			
+
 	&__button
 		width 100%
 		padding 20px 30px
@@ -41,6 +46,8 @@
 		@media screen and (max-width: $phone)
 			font-size 1rem
 			padding 15px 25px
+		&:active
+			transform scale(0.95)
 
 	&__volume
 		@extend .flex

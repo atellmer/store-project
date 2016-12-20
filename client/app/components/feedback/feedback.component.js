@@ -35,11 +35,11 @@
 
     function send() {
       var target = angular.element(event.target);
-      var type = target.closest('[data-modal-type]').attr('data-modal-type');
+      var type = target.closest('[modal-type]').attr('modal-type');
 
       if (type === 'feedback') {
-        var name = document.querySelector('[data-modal-type=' + type + '] [data-input-name]').value + '';
-        var feedback = document.querySelector('[data-modal-type=' + type + '] [data-input-feedback]').value + '';
+        var name = document.querySelector('[modal-type=' + type + '] [input-name]').value + '';
+        var feedback = document.querySelector('[modal-type=' + type + '] [input-feedback]').value + '';
         var data = {
           type: 'Отзыв',
           name: name,

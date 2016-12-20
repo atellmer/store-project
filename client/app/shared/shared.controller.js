@@ -11,7 +11,7 @@
   function SharedController($document, Store, DataService) {
     var vm = this;
 
-    vm.products;
+    vm.products = [];
     vm.year = new Date().getFullYear();
     vm.scrollTo = scrollTo;
 
@@ -19,12 +19,22 @@
 
     ////////////////
     function activate() {
-      var localState = JSON.parse(localStorage.getItem('state'));
+      storeUpdater();
+      DataService.fetchData();
+      storeHandler();
+    }
+
+    function storeUpdater() {
+      var localState = JSON.parse(localStorage.getItem('GLOBAL_STATE'));
 
       if (localState && localState.root) {
         Store.update('root', localState.root);
+
+        console.log('global state: ', Store.getState().root);
       }
-      DataService.fetchData();
+    }
+
+    function storeHandler() {
       Store.detect('root.products', function () {
         vm.products = Store.getState().root.products;
       });

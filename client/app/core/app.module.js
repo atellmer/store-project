@@ -1,12 +1,12 @@
 ;
-(function() {
-	'use strict';
+(function () {
+  'use strict';
 
-	angular.module('app', [
-		'hmTouchEvents',
-		'ngDialog',
-		'ngScrollbars',
-		'duScroll',
-		'valdr',
-	]);
+  angular.module('app', [
+    'hmTouchEvents',
+    'ngDialog',
+    'ngScrollbars',
+    'duScroll',
+    'valdr',
+  ]);
 })();

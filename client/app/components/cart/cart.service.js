@@ -9,50 +9,72 @@
   CartService.$inject = ['Store', 'lkFunctions'];
 
   function CartService(Store, lkFunctions) {
+    var cartBuffer = [];
+    var cart = [];
+    var sum = 0;
+
     var service = {
-      cart: [],
-      sum: 0,
-      cartBuffer: [],
       addToCart: addToCart,
       deleteFromCart: deleteFromCart,
       clearCart: clearCart,
     };
 
+    activate();
+
     return service;
 
     ////////////////
+    function activate() {
+      storeHandler();
+    }
+
+    function storeUpdater() {
+      Store.update('root.cart.value', cart);
+      Store.update('root.cart.sum', sum);
+  
+      localStorage.setItem('GLOBAL_STATE', JSON.stringify(Store.getState()));
+      console.log('global state: ', Store.getState().root);
+    }
+
+    function storeHandler() {
+      Store.detect('root.cart.value', function() {
+        cart = Store.getState().root.cart.value;
+      });
+    }
+
     function addToCart(product) {
-      service.cartBuffer.push(product);
+      cartBuffer.push(product);
 
       completeCart();
       getCartSum();
-      updateState();
+      storeUpdater();
     }
 
     function deleteFromCart(id) {
-      var index = lkFunctions.getCurIndexObjectInArray(service.cart, 'id', id);
+      var index = lkFunctions.getCurIndexObjectInArray(cart, 'id', id);
 
       if (index !== -1) {
-        service.cart.splice(index, 1);
+        cart.splice(index, 1);
       }
       getCartSum();
-      updateState();
+      storeUpdater();
     }
 
     function clearCart() {
-      service.cart = [];
-      service.cart.sum = 0;
+      cart = [];
+      sum = 0;
 
-      updateState();
+      storeUpdater();
     }
 
     function getCartSum() {
-      var sum = 0;
-      for (var i = 0, len = service.cart.length; i < len; i++) {
-        sum += service.cart[i].price * service.cart[i].amount * service.cart[i].volume;
+      var sumLocal = 0;
+
+      for (var i = 0, len = cart.length; i < len; i++) {
+        sumLocal += cart[i].price * cart[i].amount * cart[i].volume;
       }
 
-      service.sum = sum;
+      sum = sumLocal;
     }
 
     function completeCart() {
@@ -64,29 +86,29 @@
       var flag = false;
       var k = 0;
 
-      for (var i = 0; i < service.cartBuffer.length; i++) {
+      for (var i = 0; i < cartBuffer.length; i++) {
 
         id = 0;
         name = '',
-          volume = 0;
+        volume = 0;
         amount = 0;
 
-        for (var j = 0; j < service.cartBuffer.length; j++) {
-          if (service.cartBuffer[i].id === service.cartBuffer[j].id) {
+        for (var j = 0; j < cartBuffer.length; j++) {
+          if (cartBuffer[i].id === cartBuffer[j].id) {
             flag = true;
-            id = service.cartBuffer[i].id;
-            name = service.cartBuffer[i].name;
-            volume += service.cartBuffer[i].volume;
-            amount += service.cartBuffer[i].amount;
-            price += service.cartBuffer[i].price;
+            id = cartBuffer[i].id;
+            name = cartBuffer[i].name;
+            volume += cartBuffer[i].volume;
+            amount += cartBuffer[i].amount;
+            price += cartBuffer[i].price;
           }
         }
 
         if (flag) {
-          var index = lkFunctions.getCurIndexObjectInArray(service.cart, 'id', id);
+          var index = lkFunctions.getCurIndexObjectInArray(cart, 'id', id);
 
           if (index !== -1) {
-            service.cart[index] = {
+            cart[index] = {
               id: id,
               name: name,
               volume: volume,
@@ -94,7 +116,7 @@
               price: price,
             };
           } else {
-            service.cart.push({
+            cart.push({
               id: id,
               name: name,
               volume: volume,
@@ -107,15 +129,7 @@
         }
       }
 
-      service.cartBuffer = [];
-    }
-
-    function updateState() {
-      Store.update('root.cart.value', service.cart);
-      Store.update('root.cart.sum', service.sum);
-  
-      localStorage.setItem('state', JSON.stringify(Store.getState()));
-      console.log('state: ', Store.getState().root);
+      cartBuffer = [];
     }
   }
 })();

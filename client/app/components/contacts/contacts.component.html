@@ -1,43 +1,41 @@
 <div class="contacts">
-	<span class="contacts__title">Наши контакты</span>
-	<span class="contacts__item">Телефон: +7 (917) 767-67-67</span>
-	<span class="contacts__item">Почта: 
+  <span class="contacts__title">Наши контакты</span>
+  <span class="contacts__item">Телефон: +7 (917) 767-67-67</span>
+  <span class="contacts__item">Почта: 
 		<a href="mailto:somemail@gmail.com">somemail@gmail.com</a>
 	</span>
-	<div data-hm-tap="$ctrl.showModal('phone-modal')" class="contacts__btn contacts__btn--red">Заказать звонок</div>
-	<div data-hm-tap="$ctrl.showModal('email-modal')" class="contacts__btn contacts__btn--green">Написать нам</div>
+  <div hm-tap="$ctrl.showModal('phone-modal')" class="contacts__btn contacts__btn--red">Заказать звонок</div>
+  <div hm-tap="$ctrl.showModal('email-modal')" class="contacts__btn contacts__btn--green">Написать нам</div>
 </div>
-
 <script type="text/ng-template" id="phone-modal">
-	<div data-modal-type="order-phone" class="bash-modal">
-		<div class="bash-modal__header">Закажите звонок</div>
-		<div class="bash-modal__body">
-			<div class="input-group bash-input-group">
-				<label for="name">Имя:</label>
-				<input data-input-name type="text" name="name" placeholder="Напишите ваше имя..." class="form-control">
-			</div>
-			<div class="input-group bash-input-group">
-				<label for="phone">Телефон:</label>
-				<input data-input-phone type="text" name="phone" placeholder="Введите ваш телефон..." class="form-control">
-			</div>
-		</div>
-		<div data-hm-tap="$ctrl.send($event)" class="bash-modal__btn">Заказать звонок</div>
-	</div>
+  <div modal-type="order-phone" class="bash-modal">
+    <div class="bash-modal__header">Закажите звонок</div>
+    <div class="bash-modal__body">
+      <div class="input-group bash-input-group">
+        <label for="name">Имя:</label>
+        <input input-name type="text" name="name" placeholder="Напишите ваше имя..." class="form-control">
+      </div>
+      <div class="input-group bash-input-group">
+        <label for="phone">Телефон:</label>
+        <input input-phone type="text" name="phone" placeholder="Введите ваш телефон..." class="form-control">
+      </div>
+    </div>
+    <div hm-tap="$ctrl.send($event)" class="bash-modal__btn">Заказать звонок</div>
+  </div>
 </script>
-
 <script type="text/ng-template" id="email-modal">
-	<div data-modal-type="order-email" class="bash-modal">
-		<div class="bash-modal__header">Напишите нам</div>
-		<div class="bash-modal__body">
-			<div class="input-group bash-input-group">
-				<label for="email">Email:</label>
-				<input data-input-email type="text" name="email" placeholder="Введите ваш email..." class="form-control">
-			</div>
-			<div class="input-group bash-input-group">
-				<label for="message">Текст сообщения:</label>
-				<textarea data-input-message type="text" name="message" placeholder="Ваш вопрос..." class="form-control textarea"></textarea>
-			</div>
-		</div>
-		<div data-hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div>
-	</div>
+  <div modal-type="order-email" class="bash-modal">
+    <div class="bash-modal__header">Напишите нам</div>
+    <div class="bash-modal__body">
+      <div class="input-group bash-input-group">
+        <label for="email">Email:</label>
+        <input input-email type="text" name="email" placeholder="Введите ваш email..." class="form-control">
+      </div>
+      <div class="input-group bash-input-group">
+        <label for="message">Текст сообщения:</label>
+        <textarea input-message type="text" name="message" placeholder="Ваш вопрос..." class="form-control textarea"></textarea>
+      </div>
+    </div>
+    <div hm-tap="$ctrl.send($event)" class="bash-modal__btn">Отправить</div>
+  </div>
 </script>

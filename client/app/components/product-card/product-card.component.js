@@ -14,7 +14,7 @@
   function controller(Store, CartService) {
     var vm = this;
 
-    var attr = 'data-card-id';
+    var attr = 'card-id';
 
     vm.setVolume = setVolume;
     vm.setAmount = setAmount;
@@ -30,7 +30,7 @@
       var target = angular.element(event.target);
       var parent = target.closest('[' + attr + ']');
       var id = target.closest('[' + attr + ']').attr(attr);
-      var value = target.attr('data-radio-value');
+      var value = target.attr('radio-value');
 
       var radioBtns = document.querySelectorAll('[' + attr + '="' + id + '"] .js-product-card__radio-btn');
 
@@ -45,7 +45,7 @@
 
     function getVolume(id) {
       var radioBtn = angular.element(document.querySelector('[' + attr + '="' + id + '"] .js-product-card__radio-btn--active'));
-      var volume = parseFloat(radioBtn.attr('data-radio-value')) / 1000;
+      var volume = parseFloat(radioBtn.attr('radio-value')) / 1000;
 
       return volume;
     }
@@ -76,7 +76,7 @@
     }
 
     function getPrice(id) {
-      var countEl = angular.element(document.querySelector('[' + attr + '="' + id + '"] [data-card-price]'));
+      var countEl = angular.element(document.querySelector('[' + attr + '="' + id + '"] [card-price]'));
       var price = parseFloat(countEl.text());
 
       return price;
@@ -86,7 +86,7 @@
       var target = angular.element(event.target);
       var parent = target.closest(attr);
       var id = target.closest('[' + attr + ']').attr(attr);
-      var name = angular.element(document.querySelector('[' + attr + '="' + id + '"] [data-card-name]')).attr('data-card-name');
+      var name = angular.element(document.querySelector('[' + attr + '="' + id + '"] [card-name]')).attr('card-name');
       var volume = getVolume(id);
       var amount = getAmount(id);
       var price = getPrice(id);

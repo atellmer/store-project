@@ -1,20 +1,20 @@
 ;
-(function() {
-	'use strict';
-	
-	angular
-		.module('app')
-		.config(scrollBar);
+(function () {
+  'use strict';
 
-	scrollBar.$inject = ['ScrollBarsProvider'];
+  angular
+    .module('app')
+    .config(scrollBar);
 
-	function scrollBar(ScrollBarsProvider) {
-		ScrollBarsProvider.defaults = {
-			scrollButtons: {
-				scrollAmount: 'auto',
-				enable: false,
-			},
-			axis: 'yx',
-    	};
-	}
+  scrollBar.$inject = ['ScrollBarsProvider'];
+
+  function scrollBar(ScrollBarsProvider) {
+    ScrollBarsProvider.defaults = {
+      scrollButtons: {
+        scrollAmount: 'auto',
+        enable: false,
+      },
+      axis: 'yx',
+    };
+  }
 })();

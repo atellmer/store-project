@@ -16,8 +16,8 @@
 
     var modal = '';
 
-    vm.cart;
-    vm.sum;
+    vm.cart = [];
+    vm.sum = 0;
 
     vm.closeCart = closeCart;
     vm.openCart = openCart;
@@ -31,14 +31,31 @@
     ////////////////
 
     function activate() {
-      Store.detect('root.cart', function () {
+      storeHandler();
+      animateCartBtn();
+    }
+
+    function storeHandler() {
+      Store.detect('root.cart.value', function () {
         vm.cart = Store.getState().root.cart.value;
-        vm.sum = Store.getState().root.cart.sum;
 
         if (vm.cart.length !== 0) {
           openCart();
         }
       });
+      Store.detect('root.cart.sum', function () {
+        vm.sum = Store.getState().root.cart.sum;
+      });
+    }
+
+    function animateCartBtn() {
+      var el = document.querySelector('[cart-btn]');
+
+      setInterval(function() {
+        if (vm.cart.length !== 0) {
+          el.classList.toggle('cart-animate');
+        }
+      }, 5000);
     }
 
     function openCart() {
@@ -63,6 +80,7 @@
 
     function deleteFromCart(id) {
       CartService.deleteFromCart(id);
+
       if (vm.cart.length === 0) {
         closeCart();
       }
@@ -79,7 +97,7 @@
         var template = document.querySelector('.ngdialog');
         $compile(template)($scope);
 
-        var container = document.querySelector('[data-iframe-order]');
+        var container = document.querySelector('[iframe-order]');
         var iframe = document.createElement('iframe');
         var sum = vm.sum;
         var domen = document.location.hostname;

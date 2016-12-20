@@ -1,20 +1,20 @@
 ;
-(function() {
-	'use strict';
+(function () {
+  'use strict';
 
-	angular.module('app')
-		.component('bashCertificate', {
-			templateUrl: './app/components/certificate/certificate.component.html',
-			controller: ['Modals', controller],
-		});
+  angular.module('app')
+    .component('bashCertificate', {
+      templateUrl: './app/components/certificate/certificate.component.html',
+      controller: ['Modals', controller],
+    });
 
-	function controller(Modals) {
-		var vm = this;
+  function controller(Modals) {
+    var vm = this;
 
-		vm.showModal = Modals.showModal;
+    vm.showModal = Modals.showModal;
 
-		activate();
+    activate();
 
-		function activate() {}
-	}
+    function activate() {}
+  }
 })();

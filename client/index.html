@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru" data-ng-app="app">
+<html lang="ru" ng-app="app">
 
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <title>Купить башкирский мёд</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -12,22 +12,12 @@
     <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.min.css">
     <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css">
     <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="dist/bundle.css?rev=723014bb5547b3a25814ca10ba1dce07">
+    <link rel="stylesheet" href="dist/bundle.css?rev=4557e5853e864c85692532f2afa9b1bc">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <!--?rev=@@hash-->
-    <style>
-      [ng\:cloak],
-      [ng-cloak],
-      [data-ng-cloak],
-      [x-ng-cloak],
-      .ng-cloak,
-      .x-ng-cloak {
-        display: none!important;
-      }
-    </style>
   </head>
 
-  <body data-ng-cloak class="likearts-content" data-ng-controller="SharedController as shared">
+  <body ng-cloak class="likearts-content" ng-controller="SharedController as shared">
     <div class="container-fluid">
       <div class="section section--1" style="background-image: url('./resources/img/bg/bg--1.png');">
         <div class="container">
@@ -46,9 +36,11 @@
                 <img src="./resources/img/content/1.png" class="img-responsive content__pic" alt="">
               </div>
               <div class="column column--right">
-                <img src="./resources/img/content/2.png" class="img-responsive content__pic content__pic--small" alt="">
-                <div data-hm-tap="shared.scrollTo('[data-scroll-to]')" class="button">Заказать</div>
-                <div class="content__label">При заказе через сайт, книга в подарок</div>
+                <img
+                  src="./resources/img/content/2.png"
+                  class="img-responsive content__pic content__pic--small"
+                  alt="Мёд">
+                <div hm-tap="shared.scrollTo('[scroll-to]')" class="button">Заказать</div>
               </div>
             </div>
             <div class="bee-container">
@@ -58,13 +50,13 @@
         </div>
         <div class="waves"></div>
       </div>
-      <div data-scroll-to class="section section--2">
+      <div scroll-to class="section section--2">
         <div class="container">
-          <div class="products js-products">
-            <div data-catalog-carousel>
-              <bash-product-card product="product" data-ng-repeat="product in shared.products track by product.id">
-              </bash-product-card>
-            </div>
+          <div class="products">
+            <bash-product-card
+              product="product"
+              ng-repeat="product in shared.products track by product.id">
+            </bash-product-card>
           </div>
         </div>
       </div>
@@ -73,7 +65,12 @@
           <div class="content">
             <h2 class="content__title content__title--h2">Где рождается наш мёд</h2>
             <div class="content__video">
-              <iframe class="iframe" src="https://www.youtube.com/embed/MVuCKVOaZec" frameborder="0" allowfullscreen></iframe>
+              <iframe
+                class="iframe"
+                src="https://www.youtube.com/embed/MVuCKVOaZec"
+                frameborder="0"
+                allowfullscreen>
+              </iframe>
             </div>
           </div>
         </div>
@@ -95,20 +92,21 @@
         </footer>
       </div>
       <bash-cart></bash-cart>
-      <script src="bower_components/jquery/dist/jquery.min.js"></script>
-      <script src="bower_components/angular/angular.min.js"></script>
-      <script src="bower_components/spawn.js/spawn.min.js"></script>
-      <script src="bower_components/hammerjs/hammer.min.js"></script>
-      <script src="bower_components/angular-hammer/angular-hammer.js"></script>
-      <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
-      <script src="bower_components/ng-dialog/js/ngDialog.min.js"></script>
-      <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
-      <script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
-      <script src="bower_components/valdr/valdr.min.js"></script>
-      <script src="bower_components/valdr/valdr-message.min.js"></script>
-      <script src="bower_components/device.js/lib/device.min.js"></script>
-      <script src="dist/bundle.js?rev=2bf1d90dfed60c0bdf2fd6a9b6009306"></script>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/spawn.js/spawn.min.js"></script>
+    <script src="bower_components/hammerjs/hammer.min.js"></script>
+    <script src="bower_components/angular-hammer/angular-hammer.js"></script>
+    <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
+    <script src="bower_components/ng-dialog/js/ngDialog.min.js"></script>
+    <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
+    <script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
+    <script src="bower_components/valdr/valdr.min.js"></script>
+    <script src="bower_components/valdr/valdr-message.min.js"></script>
+    <script src="bower_components/device.js/lib/device.min.js"></script>
+    <script src="dist/bundle.js?rev=f1b5434a24953ec118432231995d5e70"></script>
   </body>
 
 </html>
