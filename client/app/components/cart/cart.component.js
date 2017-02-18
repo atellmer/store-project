@@ -5,10 +5,10 @@
   angular.module('app')
     .component('bashCart', {
       templateUrl: './app/components/cart/cart.component.html',
-      controller: ['$scope', '$http', '$compile', '$timeout', 'Store', 'CartService', 'Modals', controller],
+      controller: ['$scope', '$http', '$compile', '$timeout', 'spawn$', 'CartService', 'Modals', controller],
     });
 
-  function controller($scope, $http, $compile, $timeout, Store, CartService, Modals) {
+  function controller($scope, $http, $compile, $timeout, spawn$, CartService, Modals) {
     var vm = this;
 
     var cartEl = angular.element(document.querySelector('.js-cart'));
@@ -31,20 +31,20 @@
     ////////////////
 
     function activate() {
-      storeHandler();
+      spawnHandler();
       animateCartBtn();
     }
 
-    function storeHandler() {
-      Store.detect('root.cart.value', function () {
-        vm.cart = Store.getState().root.cart.value;
+    function spawnHandler() {
+      spawn$.detect('cart.value', function () {
+        vm.cart = spawn$.select('cart.value');
 
-        if (vm.cart.length !== 0) {
+        if (vm.cart && vm.cart.length > 0) {
           openCart();
         }
       });
-      Store.detect('root.cart.sum', function () {
-        vm.sum = Store.getState().root.cart.sum;
+      spawn$.detect('cart.sum', function () {
+        vm.sum = spawn$.select('cart.sum');
       });
     }
 
@@ -52,7 +52,7 @@
       var el = document.querySelector('[cart-btn]');
 
       setInterval(function() {
-        if (vm.cart.length !== 0) {
+        if (vm.cart && vm.cart.length !== 0) {
           el.classList.toggle('cart-animate');
         }
       }, 5000);
@@ -81,7 +81,7 @@
     function deleteFromCart(id) {
       CartService.deleteFromCart(id);
 
-      if (vm.cart.length === 0) {
+      if (vm.cart && vm.cart.length === 0) {
         closeCart();
       }
     }

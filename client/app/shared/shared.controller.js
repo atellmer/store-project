@@ -6,9 +6,9 @@
     .module('app')
     .controller('SharedController', SharedController);
 
-  SharedController.$inject = ['$document', 'Store', 'DataService'];
+  SharedController.$inject = ['$document', 'spawn$', 'DataService', 'DeviceDetector'];
 
-  function SharedController($document, Store, DataService) {
+  function SharedController($document, spawn$, DataService, DeviceDetector) {
     var vm = this;
 
     vm.products = [];
@@ -19,30 +19,29 @@
 
     ////////////////
     function activate() {
-      storeUpdater();
+      logger();
+      DataService.loadState();
+      DeviceDetector.detect();
       DataService.fetchData();
-      storeHandler();
+      spawnHandler();
     }
 
-    function storeUpdater() {
-      var localState = JSON.parse(localStorage.getItem('GLOBAL_STATE'));
-
-      if (localState && localState.root) {
-        Store.update('root', localState.root);
-
-        console.log('global state: ', Store.getState().root);
-      }
+    function spawnHandler() {
+      spawn$.detect('products', function () {
+        vm.products = spawn$.select('products');
+      });
     }
 
-    function storeHandler() {
-      Store.detect('root.products', function () {
-        vm.products = Store.getState().root.products;
+    function logger() {
+      spawn$.detect('*', function() {
+        if (/@ACTIONS/.test(spawn$.select('->'))) {
+          console.log('zone: ', spawn$.select('->') + ' -> ', spawn$.select('*'));
+        }
       });
     }
 
     function scrollTo(selector) {
       var element = angular.element(document.querySelector(selector));
-
       $document.scrollToElement(element, 30, 800);
     }
   }

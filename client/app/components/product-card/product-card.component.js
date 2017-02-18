@@ -8,10 +8,10 @@
         product: '<',
       },
       templateUrl: './app/components/product-card/product-card.component.html',
-      controller: ['Store', 'CartService', controller],
+      controller: ['CartService', controller],
     });
 
-  function controller(Store, CartService) {
+  function controller(CartService) {
     var vm = this;
 
     var attr = 'card-id';

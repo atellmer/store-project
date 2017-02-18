@@ -5,10 +5,10 @@
   angular.module('app')
     .component('bashFeedback', {
       templateUrl: './app/components/feedback/feedback.component.html',
-      controller: ['$scope', '$compile', 'Store', '$timeout', 'Modals', 'DataService', controller],
+      controller: ['$scope', '$compile', 'spawn$', '$timeout', 'Modals', 'DataService', controller],
     });
 
-  function controller($scope, $compile, Store, $timeout, Modals, DataService) {
+  function controller($scope, $compile, spawn$, $timeout, Modals, DataService) {
     var vm = this;
 
     var modal = '';
@@ -20,8 +20,8 @@
     activate();
 
     function activate() {
-      Store.detect('root.feedback', function() {
-        vm.feedback = Store.getState().root.feedback;
+      spawn$.detect('feedback', function() {
+        vm.feedback = spawn$.select('feedback');
       });
     }
 
@@ -45,8 +45,6 @@
           name: name,
           feedback: feedback,
         };
-
-        console.log('Отзыв: ', data);
       }
 
       modal.close();

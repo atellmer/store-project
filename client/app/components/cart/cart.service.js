@@ -6,9 +6,9 @@
     .module('app')
     .factory('CartService', CartService);
 
-  CartService.$inject = ['Store', 'lkFunctions'];
+  CartService.$inject = ['spawn$', 'lkFunctions'];
 
-  function CartService(Store, lkFunctions) {
+  function CartService(spawn$, lkFunctions) {
     var cartBuffer = [];
     var cart = [];
     var sum = 0;
@@ -25,20 +25,20 @@
 
     ////////////////
     function activate() {
-      storeHandler();
+      spawnHandler();
     }
 
-    function storeUpdater() {
-      Store.update('root.cart.value', cart);
-      Store.update('root.cart.sum', sum);
-  
-      localStorage.setItem('GLOBAL_STATE', JSON.stringify(Store.getState()));
-      console.log('global state: ', Store.getState().root);
+    function spawnUpdater() {
+      spawn$.update('cart.value', cart);
+      spawn$.update('cart.sum', sum);
+
+      localStorage.setItem('LOCAL_APP_STATE', JSON.stringify(spawn$.select('*')));
+      spawn$.update('@ACTIONS.SAVE_LOCAL_STATE', new Date());
     }
 
-    function storeHandler() {
-      Store.detect('root.cart.value', function() {
-        cart = Store.getState().root.cart.value;
+    function spawnHandler() {
+      spawn$.detect('cart.value', function() {
+        cart = spawn$.select('cart.value');
       });
     }
 
@@ -47,7 +47,8 @@
 
       completeCart();
       getCartSum();
-      storeUpdater();
+      spawnUpdater();
+      spawn$.update('@ACTIONS.ADD_TO_CART', new Date());
     }
 
     function deleteFromCart(id) {
@@ -57,14 +58,16 @@
         cart.splice(index, 1);
       }
       getCartSum();
-      storeUpdater();
+      spawnUpdater();
+      spawn$.update('@ACTIONS.DELETE_FROM_CART', new Date());
     }
 
     function clearCart() {
       cart = [];
       sum = 0;
 
-      storeUpdater();
+      spawnUpdater();
+      spawn$.update('@ACTIONS.CLEAR_CART', new Date());
     }
 
     function getCartSum() {

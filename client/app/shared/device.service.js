@@ -5,28 +5,21 @@
     .module('app')
     .factory('DeviceDetector', DeviceDetector);
 
-  DeviceDetector.inject = [];
+  DeviceDetector.inject = ['spawn$'];
 
-  function DeviceDetector() {
+  function DeviceDetector(spawn$) {
     var service = {
-      isPhone: isPhone,
-      isTablet: isTablet,
-      isDesktop: isDesktop
+      detect: detect
     };
     
     return service;
 
     ////////////////
-    function isPhone() { 
-      return device.mobile();
-    }
-
-    function isTablet() { 
-      return device.tablet();
-    }
-
-    function isDesktop() { 
-      return device.desktop();
+    function detect() {
+      spawn$.update('device.desktop', device.desktop());
+      spawn$.update('device.tablet', device.tablet());
+      spawn$.update('device.mobile', device.mobile());
+      spawn$.update('@ACTIONS.DETECT_DEVICE', new Date());
     }
   }
 })();
