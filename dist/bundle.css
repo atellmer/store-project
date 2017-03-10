@@ -265,25 +265,6 @@ a:focus {
   -ms-animation: motion--john 20s infinite ease-in-out;
   animation: motion--john 20s infinite ease-in-out;
 }
-.slick-slide:focus {
-  outline: none !important;
-}
-@media screen and (max-width: 1340px) {
-  .slick-prev,
-  .slick-next {
-    display: none !important;
-  }
-}
-.slick-prev:before,
-.slick-next:before {
-  color: #f77302;
-}
-@media screen and (max-width: 1340px) {
-  .slick-prev:before,
-  .slick-next:before {
-    display: none !important;
-  }
-}
 .likearts-content .button {
   display: inline-block;
   height: auto;
@@ -319,6 +300,25 @@ a:focus {
   -o-transform: scale(0.95);
   -ms-transform: scale(0.95);
   transform: scale(0.95);
+}
+.slick-slide:focus {
+  outline: none !important;
+}
+@media screen and (max-width: 1340px) {
+  .slick-prev,
+  .slick-next {
+    display: none !important;
+  }
+}
+.slick-prev:before,
+.slick-next:before {
+  color: #f77302;
+}
+@media screen and (max-width: 1340px) {
+  .slick-prev:before,
+  .slick-next:before {
+    display: none !important;
+  }
 }
 .likearts-content .cart {
   position: fixed;
@@ -738,68 +738,6 @@ a:focus {
 .likearts-content .contacts__btn--green {
   background-color: #23b03d;
 }
-.likearts-content .section--6 .footer {
-  width: 100%;
-  min-height: 150px;
-  padding: 8px;
-  background: -webkit-linear-gradient(180deg, #ffc62a, #f39c12);
-  background: -moz-linear-gradient(180deg, #ffc62a, #f39c12);
-  background: -o-linear-gradient(180deg, #ffc62a, #f39c12);
-  background: -ms-linear-gradient(180deg, #ffc62a, #f39c12);
-  background: linear-gradient(270deg, #ffc62a, #f39c12);
-  -webkit-background-size: 400% 400%;
-  -moz-background-size: 400% 400%;
-  background-size: 400% 400%;
-  -webkit-animation: background-footer 30s ease infinite;
-  -moz-animation: background-footer 30s ease infinite;
-  -o-animation: background-footer 30s ease infinite;
-  -ms-animation: background-footer 30s ease infinite;
-  animation: background-footer 30s ease infinite;
-}
-.likearts-content .header {
-  padding: 20px 0;
-  -webkit-box-pack: justify;
-  -moz-box-pack: justify;
-  -o-box-pack: justify;
-  -ms-flex-pack: justify;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
-}
-@media screen and (max-width: 640px) {
-  .likearts-content .header {
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-    -o-box-orient: horizontal;
-    -webkit-box-lines: multiple;
-    -moz-box-lines: multiple;
-    -o-box-lines: multiple;
-    -webkit-flex-flow: row wrap;
-    -ms-flex-flow: row wrap;
-    flex-flow: row wrap;
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -o-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-  }
-}
-.likearts-content .header__logo {
-  width: 320px;
-  height: 116px;
-}
-@media screen and (max-width: 992px) {
-  .likearts-content .header__logo {
-    width: 213.33px;
-    height: 77.33px;
-  }
-}
-@media screen and (max-width: 640px) {
-  .likearts-content .header__logo {
-    width: 160px;
-    height: 58px;
-  }
-}
 .likearts-content .feedback {
   position: relative;
   width: 60%;
@@ -912,6 +850,68 @@ a:focus {
     justify-content: center;
   }
 }
+.likearts-content .section--6 .footer {
+  width: 100%;
+  min-height: 150px;
+  padding: 8px;
+  background: -webkit-linear-gradient(180deg, #ffc62a, #f39c12);
+  background: -moz-linear-gradient(180deg, #ffc62a, #f39c12);
+  background: -o-linear-gradient(180deg, #ffc62a, #f39c12);
+  background: -ms-linear-gradient(180deg, #ffc62a, #f39c12);
+  background: linear-gradient(270deg, #ffc62a, #f39c12);
+  -webkit-background-size: 400% 400%;
+  -moz-background-size: 400% 400%;
+  background-size: 400% 400%;
+  -webkit-animation: background-footer 30s ease infinite;
+  -moz-animation: background-footer 30s ease infinite;
+  -o-animation: background-footer 30s ease infinite;
+  -ms-animation: background-footer 30s ease infinite;
+  animation: background-footer 30s ease infinite;
+}
+.likearts-content .header {
+  padding: 20px 0;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -o-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+@media screen and (max-width: 640px) {
+  .likearts-content .header {
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -o-box-orient: horizontal;
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -o-box-lines: multiple;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -o-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+}
+.likearts-content .header__logo {
+  width: 320px;
+  height: 116px;
+}
+@media screen and (max-width: 992px) {
+  .likearts-content .header__logo {
+    width: 213.33px;
+    height: 77.33px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .likearts-content .header__logo {
+    width: 160px;
+    height: 58px;
+  }
+}
 .likearts-content .shield {
   position: absolute;
   top: 15%;
@@ -965,6 +965,44 @@ a:focus {
 @media (max-width: 400px) {
   .likearts-content .shield__title--h2 {
     font-size: 1.8rem;
+  }
+}
+.likearts-content .phone {
+  text-align: right;
+}
+@media screen and (max-width: 640px) {
+  .likearts-content .phone {
+    text-align: center;
+    width: 100%;
+  }
+}
+.likearts-content .phone__text {
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+@media screen and (max-width: 992px) {
+  .likearts-content .phone__text {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 640px) {
+  .likearts-content .phone__text {
+    font-size: 1.5rem;
+  }
+}
+.likearts-content .phone__number {
+  font-size: 3.1rem;
+  font-weight: 900;
+  color: #f77302;
+}
+@media screen and (max-width: 992px) {
+  .likearts-content .phone__number {
+    font-size: 2.5rem;
+  }
+}
+@media screen and (max-width: 640px) {
+  .likearts-content .phone__number {
+    font-size: 2rem;
   }
 }
 .likearts-content bash-product-card {
@@ -1123,44 +1161,6 @@ a:focus {
   height: 10px;
   border-radius: 50%;
   background-color: #fcaf18;
-}
-.likearts-content .phone {
-  text-align: right;
-}
-@media screen and (max-width: 640px) {
-  .likearts-content .phone {
-    text-align: center;
-    width: 100%;
-  }
-}
-.likearts-content .phone__text {
-  font-size: 2.5rem;
-  font-weight: 300;
-}
-@media screen and (max-width: 992px) {
-  .likearts-content .phone__text {
-    font-size: 2rem;
-  }
-}
-@media screen and (max-width: 640px) {
-  .likearts-content .phone__text {
-    font-size: 1.5rem;
-  }
-}
-.likearts-content .phone__number {
-  font-size: 3.1rem;
-  font-weight: 900;
-  color: #f77302;
-}
-@media screen and (max-width: 992px) {
-  .likearts-content .phone__number {
-    font-size: 2.5rem;
-  }
-}
-@media screen and (max-width: 640px) {
-  .likearts-content .phone__number {
-    font-size: 2rem;
-  }
 }
 .likearts-content .section--1 {
   min-height: 670px;
