@@ -3,30 +3,30 @@
 		<i class="material-icons cart__icon">close</i>
 	</div>
 	<div class="cart__title">Ваш заказ:</div>
-	<ul ng-scrollbars ng-if="$ctrl.cart.length > 0" class="cart__list">
-		<li ng-repeat="item in $ctrl.cart" class="cart__item">
+	<ul ng-scrollbars ng-if="$ctrl.cart.list.length > 0" class="cart__list">
+		<li ng-repeat="item in $ctrl.cart.list" class="cart__item">
 			<span>
 				{{ ::$index + 1 }}. 
 				{{ ::item.name }} 
 				<br>
 				<span class="cart__item-detail">({{ ::item.amount }} шт. по {{ ::item.volume }} л. на сумму {{ ::(item.price * item.amount * item.volume) }} р.)</span>
 			</span>
-			<span ng-click="$ctrl.deleteFromCart(item.id)" class="cart__delete-btn">
+			<span ng-click="$ctrl.deleteFromCart($index)" class="cart__delete-btn">
 				<i class="material-icons cart__delete-icon">delete</i>
 			</span>
 		</li>
 	</ul>
-	<ul ng-if="$ctrl.cart.length === 0" class="cart__list">
+	<ul ng-if="$ctrl.cart.list.length === 0" class="cart__list">
 		<li class="cart__item">
 			В вашей корзине пока пусто :(
 		</li>
 	</ul>
-	<div ng-if="$ctrl.cart.length > 0" class="cart__sum">
-		Сумма заказа: {{ $ctrl.sum }}
+	<div ng-if="$ctrl.cart.list.length > 0" class="cart__sum">
+		Сумма заказа: {{ $ctrl.cart.sum }}
 	</div>
 
 	<form 
-		ng-if="$ctrl.cart.length > 0" 
+		ng-if="$ctrl.cart.list.length > 0" 
 		name="PhoneForm" 
 		novalidate 
 		valdr-type="PhoneForm" 
@@ -62,7 +62,7 @@
 		Башкирский мёд
 	</div>
 	<button 
-		ng-if="$ctrl.cart.length > 0"
+		ng-if="$ctrl.cart.list.length > 0"
 		ng-click="$ctrl.clearCart()"
 		class="cart__clear-btn">
 		Очистить корзину
@@ -71,9 +71,9 @@
 </div>
 
 <div cart-btn class="cart-btn" ng-click="$ctrl.openCart()">
-	<i ng-if="$ctrl.cart.length === 0" class="material-icons cart-btn__icon">add_shopping_cart</i>
-	<i ng-if="$ctrl.cart.length > 0" class="material-icons cart-btn__icon">shopping_cart</i>
-	<span class="cart-btn__count">{{ $ctrl.cart.length }}</span>
+	<i ng-if="$ctrl.cart.list.length === 0" class="material-icons cart-btn__icon">add_shopping_cart</i>
+	<i ng-if="$ctrl.cart.list.length > 0" class="material-icons cart-btn__icon">shopping_cart</i>
+	<span class="cart-btn__count">{{ $ctrl.cart.list.length }}</span>
 </div>
 
 <script type="text/ng-template" id="order-modal">

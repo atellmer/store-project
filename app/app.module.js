@@ -2,7 +2,9 @@
 (function () {
   'use strict';
 
-  angular.module('app', [
+  angular
+  .module('app', [
+    'ngSpawnModule',
     'ngDialog',
     'ngScrollbars',
     'duScroll',

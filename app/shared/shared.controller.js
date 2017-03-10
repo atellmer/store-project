@@ -4,45 +4,39 @@
 
   angular
     .module('app')
-    .controller('SharedController', SharedController);
+    .controller('SharedController', controller);
 
-  SharedController.$inject = ['$document', 'Store', 'DataService'];
+  controller.$inject = [
+    '$document',
+    'ngSpawn',
+    'EnvironmentActions',
+    'DataActions',];
 
-  function SharedController($document, Store, DataService) {
+  function controller(
+    $document,
+    ngSpawn,
+    EnvironmentActions,
+    DataActions) {
     var vm = this;
-
-    vm.products = [];
-    vm.year = new Date().getFullYear();
-    vm.scrollTo = scrollTo;
 
     activate();
 
+    vm.year = new Date().getFullYear();
+    vm.scrollTo = scrollTo;
+
     ////////////////
     function activate() {
-      storeUpdater();
-      DataService.fetchData();
-      storeHandler();
-    }
-
-    function storeUpdater() {
-      var localState = JSON.parse(localStorage.getItem('GLOBAL_STATE'));
-
-      if (localState && localState.root) {
-        Store.update('root', localState.root);
-
-        console.log('global state: ', Store.getState().root);
+      EnvironmentActions.detectDevice();
+      DataActions.fetchData();
+      
+      var selection = {
+        products: 'products'
       }
-    }
-
-    function storeHandler() {
-      Store.detect('root.products', function () {
-        vm.products = Store.getState().root.products;
-      });
+      ngSpawn.connect(selection)(vm);
     }
 
     function scrollTo(selector) {
       var element = angular.element(document.querySelector(selector));
-
       $document.scrollToElement(element, 30, 800);
     }
   }

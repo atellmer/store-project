@@ -2,60 +2,67 @@
 (function () {
   'use strict';
 
-  angular.module('app')
+  angular
+    .module('app')
     .component('bashCart', {
       templateUrl: './app/components/cart/cart.component.html',
-      controller: ['$scope', '$http', '$compile', '$timeout', 'Store', 'CartService', 'Modals', controller],
+      controller: [
+        '$scope',
+        '$http',
+        '$compile',
+        '$timeout',
+        'ngSpawn',
+        'CartActions',
+        'Modals',
+        controller],
     });
 
-  function controller($scope, $http, $compile, $timeout, Store, CartService, Modals) {
+  function controller(
+    $scope,
+    $http,
+    $compile,
+    $timeout,
+    ngSpawn,
+    CartActions,
+    Modals) {
     var vm = this;
-
     var cartEl = angular.element(document.querySelector('.js-cart'));
     var productsEl = angular.element(document.querySelector('.js-products'));
-
     var modal = '';
 
-    vm.cart = [];
-    vm.sum = 0;
-
+    vm.showModal = showModal;
+    vm.sendLetter = sendLetter;
     vm.closeCart = closeCart;
     vm.openCart = openCart;
     vm.deleteFromCart = deleteFromCart;
     vm.clearCart = clearCart;
-    vm.showModal = showModal;
-    vm.sendLetter = sendLetter;
 
-    activate();
+    vm.$onInit = function() {
+      var selection = {
+        cart: 'cart'
+      };
+  
+      ngSpawn.connect(selection)(vm);
 
-    ////////////////
-
-    function activate() {
-      storeHandler();
-      animateCartBtn();
-    }
-
-    function storeHandler() {
-      Store.detect('root.cart.value', function () {
-        vm.cart = Store.getState().root.cart.value;
-
-        if (vm.cart.length !== 0) {
+      ngSpawn.detect('cart.list', function() {
+        if (ngSpawn.select('cart.list').length > 0) {
           openCart();
+        } else {
+          closeCart();
         }
-      });
-      Store.detect('root.cart.sum', function () {
-        vm.sum = Store.getState().root.cart.sum;
       });
     }
 
-    function animateCartBtn() {
-      var el = document.querySelector('[cart-btn]');
+    vm.$onDestroy = function () {
+      ngSpawn.disconnect(vm);
+    }
 
-      setInterval(function() {
-        if (vm.cart.length !== 0) {
-          el.classList.toggle('cart-animate');
-        }
-      }, 5000);
+    function clearCart() {
+      CartActions.clearCart();
+    }
+
+    function deleteFromCart(index) {
+      CartActions.deleteFromCart(index);
     }
 
     function openCart() {
@@ -78,19 +85,6 @@
       }
     }
 
-    function deleteFromCart(id) {
-      CartService.deleteFromCart(id);
-
-      if (vm.cart.length === 0) {
-        closeCart();
-      }
-    }
-
-    function clearCart() {
-      CartService.clearCart();
-      closeCart();
-    }
-
     function showModal(templateId) {
       modal = Modals.showModal(templateId);
       $timeout(function () {
@@ -99,7 +93,7 @@
 
         var container = document.querySelector('[iframe-order]');
         var iframe = document.createElement('iframe');
-        var sum = vm.sum;
+        var sum = vm.cart.sum;
         var domen = document.location.hostname;
 
         var src = 'https://money.yandex.ru/embed/shop.xml?account=410011483894113&quickpay=shop&payment-type-choice=on&mobile-payment-type-choice=on&writer=seller&targets=%D0%9F%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B0+%D0%91%D0%B0%D1%88%D0%BA%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE+%D0%BC%D1%91%D0%B4%D0%B0&default-sum=' + sum + '&button-text=01&fio=on&phone=on&address=on&successURL=http%3A%2F%2F' + domen + '%2F';

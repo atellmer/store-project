@@ -4,11 +4,11 @@
 
   angular
     .module('app')
-    .config(scrollBar);
+    .config(configurScrollBar);
 
-  scrollBar.$inject = ['ScrollBarsProvider'];
+  configurScrollBar.$inject = ['ScrollBarsProvider'];
 
-  function scrollBar(ScrollBarsProvider) {
+  function configurScrollBar(ScrollBarsProvider) {
     ScrollBarsProvider.defaults = {
       scrollButtons: {
         scrollAmount: 'auto',

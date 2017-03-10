@@ -4,11 +4,11 @@
 
   angular
     .module('app')
-    .config(prodMode);
+    .config(configureProdMode);
 
-  prodMode.$inject = ['$compileProvider'];
+  configureProdMode.$inject = ['$compileProvider'];
 
-  function prodMode($compileProvider) {
+  function configureProdMode($compileProvider) {
     $compileProvider.debugInfoEnabled(false);
   }
 })();
