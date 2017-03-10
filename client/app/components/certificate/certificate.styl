@@ -7,13 +7,13 @@
 		flex-flow row wrap
 		justify-content center
 		align-items center
-		@media(max-width: 600px)
-			display none
 
 	.certificate__item
 		width 100%
 		max-width 250px
 		margin 20px
 		cursor pointer
+		@media screen and (max-width: $tablet)
+			max-width 150px
 		@media screen and (max-width: $phone)
-			max-width 200px
+			max-width 100px

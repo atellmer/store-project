@@ -6,13 +6,14 @@
     .module('app')
     .factory('CartActions', factory);
 
-  factory.$inject = ['ngSpawn', 'helpers'];
+  factory.$inject = ['ngSpawn'];
 
-  function factory(ngSpawn, helpers) {
+  function factory(ngSpawn) {
     var service = {
       addToCart: addToCart,
       deleteFromCart: deleteFromCart,
       clearCart: clearCart,
+      recountCartSum: recountCartSum
     };
 
     activate();
@@ -20,17 +21,26 @@
     return service;
 
     function activate() {
-      ngSpawn.detect('cart.list', function() {
-        var sum = ngSpawn
-          .select('cart.list')
-          .reduce(function(acc, item) {
-          return acc + item.price * item.volume * item.amount;
-        }, 0);
+      ngSpawn.detect('*', function(action) {
+       if (
+        action.type === 'ADD_TO_CART' ||
+        action.type === 'DELETE_FROM_CART' ||
+        action.type === 'CLEAR_CART'
+        ) {
+          recountCartSum();
+        }
+      });
+    }
 
-        ngSpawn.update('cart.sum', {
-          data: sum,
-          type: 'RECOUNT_CART_SUM'
-        });
+    function recountCartSum() {
+       var sum = ngSpawn
+        .select('cart.list')
+        .reduce(function(acc, item) {
+        return acc + item.price * item.volume * item.amount;
+      }, 0);
+      ngSpawn.update('cart.sum', {
+        data: sum,
+        type: 'RECOUNT_CART_SUM'
       });
     }
 

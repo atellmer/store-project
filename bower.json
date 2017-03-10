@@ -18,7 +18,7 @@
     "angular-scroll": "^1.0.0",
     "valdr": "^1.1.5",
     "device.js": "devicejs#^0.2.7",
-    "spawn-x": "^2.3.3",
+    "spawn-x": "^2.3.4",
     "angularjs-spawn-x": "^1.0.3"
   }
 }
