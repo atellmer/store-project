@@ -5,24 +5,25 @@
   angular.module('app')
     .component('bashFeedback', {
       templateUrl: './app/components/feedback/feedback.component.html',
-      controller: ['$scope', '$compile', 'spawn$', '$timeout', 'Modals', 'DataService', controller],
+      controller: ['$scope', '$compile', 'ngSpawn', '$timeout', 'Modals', controller],
     });
 
-  function controller($scope, $compile, spawn$, $timeout, Modals, DataService) {
+  function controller($scope, $compile, ngSpawn, $timeout, Modals) {
     var vm = this;
-
     var modal = '';
 
-    vm.feedback;
     vm.showModal = showModal;
     vm.send = send;
 
-    activate();
+    vm.$onInit = function() {
+      var selection = {
+        feedback: 'feedback'
+      };
+      ngSpawn.connect(selection)(vm);
+    }
 
-    function activate() {
-      spawn$.detect('feedback', function() {
-        vm.feedback = spawn$.select('feedback');
-      });
+    vm.$onDestroy = function() {
+      ngSpawn.disconnect(vm);
     }
 
     function showModal(templateId) {

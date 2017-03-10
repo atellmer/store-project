@@ -4,11 +4,11 @@
 
   angular
     .module('app')
-    .factory('lkFunctions', lkFunctions);
+    .factory('helpers', factory);
 
-  lkFunctions.$inject = [];
+  factory.$inject = [];
 
-  function lkFunctions() {
+  function factory() {
     var service = {
       makeArrayOf: makeArrayOf,
       getCurIndexObjectInArray: getCurIndexObjectInArray

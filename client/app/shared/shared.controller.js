@@ -4,40 +4,35 @@
 
   angular
     .module('app')
-    .controller('SharedController', SharedController);
+    .controller('SharedController', controller);
 
-  SharedController.$inject = ['$document', 'spawn$', 'DataService', 'DeviceDetector'];
+  controller.$inject = [
+    '$document',
+    'ngSpawn',
+    'EnvironmentActions',
+    'DataActions',];
 
-  function SharedController($document, spawn$, DataService, DeviceDetector) {
+  function controller(
+    $document,
+    ngSpawn,
+    EnvironmentActions,
+    DataActions) {
     var vm = this;
-
-    vm.products = [];
-    vm.year = new Date().getFullYear();
-    vm.scrollTo = scrollTo;
 
     activate();
 
+    vm.year = new Date().getFullYear();
+    vm.scrollTo = scrollTo;
+
     ////////////////
     function activate() {
-      logger();
-      DataService.loadState();
-      DeviceDetector.detect();
-      DataService.fetchData();
-      spawnHandler();
-    }
-
-    function spawnHandler() {
-      spawn$.detect('products', function () {
-        vm.products = spawn$.select('products');
-      });
-    }
-
-    function logger() {
-      spawn$.detect('*', function() {
-        if (/@ACTIONS/.test(spawn$.select('->'))) {
-          console.log('zone: ', spawn$.select('->') + ' -> ', spawn$.select('*'));
-        }
-      });
+      EnvironmentActions.detectDevice();
+      DataActions.fetchData();
+      
+      var selection = {
+        products: 'products'
+      }
+      ngSpawn.connect(selection)(vm);
     }
 
     function scrollTo(selector) {

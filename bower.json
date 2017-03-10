@@ -9,7 +9,7 @@
   "homepage": "",
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "angular": "^1.5.8",
+    "angular": "^1.6.3",
     "angular-hammer": "monospaced/angular-hammer#^1.2.4",
     "jquery": "^2.2.4",
     "slick-carousel": "^1.6.0",
@@ -18,9 +18,7 @@
     "angular-scroll": "^1.0.0",
     "valdr": "^1.1.5",
     "device.js": "devicejs#^0.2.7",
-    "spawn.js": "^0.6.4"
-  },
-  "resolutions": {
-    "angular": "^1.5.8"
+    "spawn-x": "^2.3.3",
+    "angularjs-spawn-x": "^1.0.3"
   }
 }

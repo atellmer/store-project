@@ -8,10 +8,10 @@
         product: '<',
       },
       templateUrl: './app/components/product-card/product-card.component.html',
-      controller: ['CartService', controller],
+      controller: ['CartActions', controller],
     });
 
-  function controller(CartService) {
+  function controller(CartActions) {
     var vm = this;
 
     var attr = 'card-id';
@@ -19,12 +19,6 @@
     vm.setVolume = setVolume;
     vm.setAmount = setAmount;
     vm.addToCart = addToCart;
-
-    activate();
-
-    ////////////////
-
-    function activate() {}
 
     function setVolume(event) {
       var target = angular.element(event.target);
@@ -98,7 +92,7 @@
         price: price
       }
 
-      CartService.addToCart(product);
+      CartActions.addToCart(product);
     }
   }
 })();

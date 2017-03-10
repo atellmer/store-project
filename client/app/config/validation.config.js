@@ -4,17 +4,16 @@
 
   angular
     .module('app')
-    .config(validation);
+    .config(configureValidation);
 
-  validation.$inject = ['valdrProvider'];
+  configureValidation.$inject = ['valdrProvider'];
 
-  function validation(valdrProvider) {
-
+  function configureValidation(valdrProvider) {
     valdrProvider.addConstraints({
       'PhoneForm': {
         'phone': {
           'size': {
-            'min': 12,
+            'min': 10,
             'max': 15,
             'message': 'Нужно не менее 12 символов, но не более 15.'
           },
