@@ -9,7 +9,7 @@
   configureStore.$inject = ['ngSpawnProvider'];
 
   function configureStore(ngSpawnProvider) {
-    const initialState = {
+    var initialState = {
       cart: {
         list: [],
         sum: 0
