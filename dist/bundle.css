@@ -1412,12 +1412,12 @@ a:focus {
 }
 .likearts-content .section--3 .content .iframe {
   width: 100%;
-  max-width: 650px;
-  height: 365px;
+  max-width: 740px;
+  height: 415px;
 }
 @media screen and (max-width: 600px) {
   .likearts-content .section--3 .content .iframe {
-    height: 200px;
+    height: 300px;
   }
 }
 .likearts-content .section--4 {

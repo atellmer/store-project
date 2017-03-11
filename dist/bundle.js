@@ -88,7 +88,7 @@
   configureStore.$inject = ['ngSpawnProvider'];
 
   function configureStore(ngSpawnProvider) {
-    const initialState = {
+    var initialState = {
       cart: {
         list: [],
         sum: 0
@@ -108,10 +108,11 @@
     );
 
     function logger(store) {
-      return next => action => {
-        next(action);
-        console.log('action: ', action.type + ': ', JSON.parse(JSON.stringify(action.data)));
-        //console.log('state: ', JSON.parse(JSON.stringify(store.select('*'))));
+      return function (next) {
+        return function (action) {
+          next(action);
+          console.log('action: ', action.type + ': ', JSON.parse(JSON.stringify(action.data)));
+        }
       }
     }
   }
@@ -247,7 +248,7 @@
     .module('app')
     .factory('EnvironmentActions', factory);
 
-  factory.inject = ['ngSpawn'];
+  factory.$inject = ['ngSpawn'];
 
   function factory(ngSpawn) {
     var service = {

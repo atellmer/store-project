@@ -5,7 +5,7 @@
     .module('app')
     .factory('EnvironmentActions', factory);
 
-  factory.inject = ['ngSpawn'];
+  factory.$inject = ['ngSpawn'];
 
   function factory(ngSpawn) {
     var service = {
